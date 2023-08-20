@@ -160,9 +160,9 @@ These user stories outline the various features and functionalities of the propo
 
 ![Edit Profile](docs/edit-profile-page.jpg)
 
-![Your Books](your-books-page.jpg)
+![Your Books](docs/your-books-page.jpg)
 
-![Book Editing and Adding](add-update-book-page.jpg)
+![Book Editing and Adding](docs/add-update-book-page.jpg)
 
 ![Messaging](docs/messaging-age.jpg)
 
