@@ -152,6 +152,22 @@ These user stories outline the various features and functionalities of the propo
 
 # R5. Wireframe Diagrams
 
+![Front Page](docs/front-page.jpg)
+
+![Login/Register Page](docs/login-register-page.jpg)
+
+![Search Page](docs/search-page.jpg)
+
+![Edit Profile](docs/edit-profile-page.jpg)
+
+![Your Books](your-books-page.jpg)
+
+![Book Editing and Adding](add-update-book-page.jpg)
+
+![Messaging](docs/messaging-age.jpg)
+
+![Messaing UI](docs/messaging-ui.jpg)
+
 # R6. Trello Board
 
 We have settled on an Agile Kanban style approach to project management. Each card has a general heading which describes the web page that will be implemented by that block of work. Each web page is covered by two cards. One card represents all the frontend development work. The other card represents all the backend development work.
