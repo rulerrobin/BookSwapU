@@ -100,7 +100,11 @@ Node.js is a runtime environment that allows JavaScript to be executed on the se
 
 # R2. Dataflow Diagram
 
+![DFD](./docs/DFD_diagram.png)
+
 # R3. Application Architecture Diagram
+
+![AAD](./docs/AAD_diagram.png)
 
 # R4. User Stories
 
