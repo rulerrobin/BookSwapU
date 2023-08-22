@@ -229,3 +229,14 @@ https://trello.com/b/EmuuACLM/bookswapu
 ![Checklist-4](docs/checklist-4.png)
 ***<p align="center">Checklist for the Messaging Feature View</p>***
 
+## Tracking Progress
+
+Below are a series of screenshots of my Trello board taken at the end of each day which serves as a standup.
+
+## Day 1
+
+## Day 2
+
+***<p align="left">Figure 7</p>***
+![Trello-Board](docs/Day-2.png)
+***<p align="center">Trello Board at the End of Day 2</p>***
