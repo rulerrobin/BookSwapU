@@ -1,8 +1,12 @@
 import React from 'react'
+import NewEntry from './NewEntry'
 
-const AddEditBook = () => {
+const AddEditBook = ({ addEntry }) => {
   return (
-    <div>AddEditBook</div>
+    <div>
+      <h2>Add New Book</h2>
+      <NewEntry addEntry={addEntry} />
+    </div>
   )
 }
 
