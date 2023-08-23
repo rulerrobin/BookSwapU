@@ -6,12 +6,13 @@ import UsersBooks from "./UsersBooks"
 import Home from "./Home"
 import Profile from "./Profile"
 import Search from "./Search"
+import NewEntry from "./NewEntry"
 import NavBar from "./NavBar"
 
 const seedEntries = [
-  { title: "Book 1", author: "Author 1" },
-  { title: "Book 2", author: "Author 2" },
-  { title: "Book 3", author: "Author 3" },
+  { title: "Book 1", author: "Author 1", condition: "New", user: "John", status: "Approved", edition: "4", year: "2003" },
+  { title: "Book 2", author: "Author 2", condition: "Used", user: "Peter", status: "Pending", edition: "3", year: "1999" },
+  { title: "Book 3", author: "Author 3", condition: "Good", user: "Andrew", status: "Approved", edition: "1", year: "1985" },
 ]
 
 function App() {
@@ -27,8 +28,8 @@ function App() {
     return <ShowEntry entry={entries[id]} />
   }
 
-  async function addEntry(title, author) {
-    const newEntry = { title, author }
+  async function addEntry(title, author, condition, user, status, edition, year) {
+    const newEntry = { title, author, condition, user, status, edition, year }
     setEntries([...entries, newEntry])
     nav('/usersbooks')
   }
@@ -43,6 +44,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/usersbooks" element={<UsersBooks entries={entries} addEntry={addEntry} />} />
         <Route path="/entry" element={<ShowEntryWrapper entries={entries} />} />
+        <Route path="/newentry" element={<NewEntry addBook={addEntry} />} />
+        {/* <Route path="/addbook" element={<AddEditBook onAddBook={addEntry} />} /> */}
         <Route path="*" element={<h3>Page not found</h3>} /> 
       </Routes>
     </>
