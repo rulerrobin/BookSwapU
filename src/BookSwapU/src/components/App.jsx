@@ -8,6 +8,7 @@ import Profile from "./Profile"
 import Search from "./Search"
 import NewEntry from "./NewEntry"
 import NavBar from "./NavBar"
+import AddEditBook from "./AddEditBook"
 
 const seedEntries = [
   { title: "Book 1", author: "Author 1", condition: "New", user: "John", status: "Approved", edition: "4", year: "2003" },
@@ -34,6 +35,12 @@ function App() {
     nav('/usersbooks')
   }
 
+  async function removeEntry(index) {
+    const updatedEntries = [...entries]
+    updatedEntries.splice(index, 1)
+    setEntries(updatedEntries)
+  }
+
   return (
     <>
     <NavBar />
@@ -42,10 +49,10 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/usersbooks" element={<UsersBooks entries={entries} addEntry={addEntry} />} />
+        <Route path="/usersbooks" element={<UsersBooks entries={entries} addEntry={addEntry} removeEntry={removeEntry} />} />
         <Route path="/entry" element={<ShowEntryWrapper entries={entries} />} />
-        <Route path="/newentry" element={<NewEntry addBook={addEntry} />} />
-        {/* <Route path="/addbook" element={<AddEditBook onAddBook={addEntry} />} /> */}
+        <Route path="/newentry" element={<NewEntry addEntry={addEntry} />} />
+        <Route path="/addeditbook" element={<AddEditBook addEntry={addEntry} />} />
         <Route path="*" element={<h3>Page not found</h3>} /> 
       </Routes>
     </>
