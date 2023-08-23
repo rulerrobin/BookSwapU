@@ -113,6 +113,12 @@ function App() {
     }
   }
 
+  async function removeEntry(index) {
+    const updatedEntries = [...entries]
+    updatedEntries.splice(index, 1)
+    setEntries(updatedEntries)
+  }
+
   return (
     <>
     {shouldRenderNavBar &&<NavBar />}
