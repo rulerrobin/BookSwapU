@@ -9,7 +9,7 @@ import Search from "./Search"
 import NewEntry from "./NewEntry"
 import NavBar from "./NavBar"
 import AddEditBook from "./AddEditBook"
-import Login from "./Login"
+import LoginRegister from "./LoginRegister"
 // import "./App.css"
 
 const seedEntries = [
@@ -50,7 +50,7 @@ function App() {
     {shouldRenderNavBar &&<NavBar />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LoginRegister />} />
         <Route path="/search" element={<Search />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/profile" element={<Profile />} />
