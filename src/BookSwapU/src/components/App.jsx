@@ -9,6 +9,8 @@ import Search from "./Search"
 import NewEntry from "./NewEntry"
 import NavBar from "./NavBar"
 import AddEditBook from "./AddEditBook"
+import LoginRegister from "./LoginRegister"
+// import "./App.css"
 
 const seedEntries = [
   { title: "Book 1", author: "Author 1", condition: "New", user: "John", status: "Approved", edition: "4", year: "2003" },
@@ -41,11 +43,14 @@ function App() {
     setEntries(updatedEntries)
   }
 
+  const shouldRenderNavBar = location.pathname !== "/login"
+
   return (
     <>
-    <NavBar />
+    {shouldRenderNavBar &&<NavBar />}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginRegister />} />
         <Route path="/search" element={<Search />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/profile" element={<Profile />} />
