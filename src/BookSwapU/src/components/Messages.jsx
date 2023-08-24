@@ -1,9 +1,13 @@
 import React from 'react'
+import { Button } from '@chakra-ui/button'
 
-const Messages = () => {
+const Home = () => {
   return (
-    <h2>Messages</h2>
+    <>
+      <h2>Home</h2>
+      <Button colorScheme='blue'>Button</Button>
+    </>
   )
 }
 
-export default Messages
+export default Home
