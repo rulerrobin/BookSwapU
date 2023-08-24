@@ -108,6 +108,9 @@ const handleSearch = async (searchTitle, searchAuthor) => {
           </li>
         ))}
       </ul>
+      <Link to="/newentry" className="btn btn-primary mt-3">
+        Add New Book
+      </Link>
       {showUpdateForm && selectedEntryIndex !== null && (
         <UpdateEntry
           entry={entries[selectedEntryIndex]}

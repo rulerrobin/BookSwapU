@@ -121,19 +121,17 @@ function App() {
 
   async function updateEntry(index, updatedInfo) {
     const updatedEntries = [...entries]
-    updatedEntries[index] = { ... updatedEntries[index], ...updatedInfo }
-      setEntries(updatedEntries)
-      nav('/usersbooks')
-    }
-  
+    updatedEntries[index] = { ...updatedEntries[index], ...updatedInfo }
+    setEntries(updatedEntries)
+    nav("/usersbooks")
+  }
+
   return (
     <>
     {shouldRenderNavBar &&<NavBar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginRegister />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/search" element={<SearchPage />} />
         <Route path="/search" element={<SearchAllBooks onSearch={handleSearchAllBooks}/>} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/profile" element={<Profile />} />
