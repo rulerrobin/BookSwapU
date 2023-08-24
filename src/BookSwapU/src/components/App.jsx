@@ -119,6 +119,13 @@ function App() {
     setEntries(updatedEntries)
   }
 
+  async function updateEntry(index, updatedInfo) {
+    const updatedEntries = [...entries]
+    updatedEntries[index] = { ... updatedEntries[index], ...updatedInfo }
+      setEntries(updatedEntries)
+      nav('/usersbooks')
+    }
+  
   return (
     <>
     {shouldRenderNavBar &&<NavBar />}
