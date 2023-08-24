@@ -14,7 +14,6 @@ const UpdateEntry = ({ entry, updateEntry }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // updateEntry ({
       const updatedInfo = {
       title,
       author,
