@@ -1,13 +1,27 @@
-import React from 'react'
-import { Button } from '@chakra-ui/button'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
-const Home = () => {
+const Messages = () => {
+  const [chats, setChats] = useState([])
+
+  const fetchChats = async () => {
+      const {data} = await axios.get('http://localhost:5000/api/chat')
+
+      setChats(data)
+  }
+
+  useEffect(() => {
+    fetchChats()
+  }, [])
+
   return (
-    <>
-      <h2>Home</h2>
-      <Button colorScheme='blue'>Button</Button>
-    </>
+    <div>
+      {chats.map((chat) => (
+        <div key={chat._id}>{chat.chatName}</div>
+        ))}
+      </div>
+
   )
 }
 
-export default Home
+export default Messages
