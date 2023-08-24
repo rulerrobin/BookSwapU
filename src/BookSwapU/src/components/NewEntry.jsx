@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const NewEntry = ({ addEntry }) => {
+    const navigate = useNavigate()
     const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('')
     const [condition, setCondition] = useState('')
@@ -9,9 +11,9 @@ const NewEntry = ({ addEntry }) => {
     const [edition, setEdition] = useState('')
     const [year, setYear] = useState('')
 
-    function submit(e) {
+    const submit = (e) => {
         e.preventDefault()
-        addEntry(
+        addEntry (
             title,
             author,
             condition,
@@ -27,11 +29,13 @@ const NewEntry = ({ addEntry }) => {
         setStatus('')
         setEdition('')
         setYear('')
+
+        navigate('/usersbooks')
     }
 
     return (
         <>
-          <h5>User's Books</h5>
+          <h5>Add New Book</h5>
           <form className="container" onSubmit={submit}>
             <div>
               <input
@@ -89,7 +93,9 @@ const NewEntry = ({ addEntry }) => {
             onChange={(e) => setYear(e.target.value)}
           />
         </div>
-            <button className="btn btn-primary mt-3">Add New Book</button>
+        <button type="submit" className="btn btn-primary mt-3">
+          Save
+        </button>
           </form>
         </>
       )
