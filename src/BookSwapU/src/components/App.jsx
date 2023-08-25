@@ -5,13 +5,14 @@ import ShowEntry from "./ShowEntry"
 import UsersBooks from "./UsersBooks"
 import Home from "./Home"
 import Profile from "./Profile"
-import SearchPage from "./SearchPage"
 import NewEntry from "./NewEntry"
 import NavBar from "./NavBar"
 import AddEditBook from "./AddEditBook"
 import LoginRegister from "./LoginRegister"
 // import "./App.css"
 import UpdateEntry from "./UpdateEntry"
+import { getAllBooksByCriteria } from './api'
+import SearchAllBooks from "./SearchAllBooks"
 
 const seedEntries = [
   {
@@ -100,6 +101,17 @@ function App() {
     nav("/usersbooks")
   }
 
+  const handleSearchAllBooks = async (title, author) => {
+    try {
+      // Call the API function to search for all books based on title and author
+      const searchResults = await getAllBooksByCriteria(title, author)
+      // Update your state or perform any other action with the search results
+      console.log('Search results:', searchResults)
+    } catch (error) {
+      console.error('Error searching books:', error)
+    }
+  }
+
   return (
     <>
     {shouldRenderNavBar &&<NavBar />}
@@ -108,6 +120,7 @@ function App() {
         <Route path="/login" element={<LoginRegister />} />
         <Route path="/search" element={<Search />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/search" element={<SearchAllBooks onSearch={handleSearchAllBooks}/>} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/profile" element={<Profile />} />
         <Route
