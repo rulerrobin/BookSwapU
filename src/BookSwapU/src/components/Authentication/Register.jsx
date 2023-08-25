@@ -120,7 +120,7 @@ const Register = () => {
          </InputGroup>
       </FormControl>
 
-      {/* Additional profile pic if there is time */}
+      {/* Profile pic to be added if time able */}
 
       {/* User profile pic input */}
       {/* <FormControl id='pic' isRequired>
