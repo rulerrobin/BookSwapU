@@ -126,6 +126,17 @@ function App() {
     nav("/usersbooks")
   }
 
+  const handleSearchAllBooks = async (title, author) => {
+    try {
+      // Call the API function to search for all books based on title and author
+      const searchResults = await getAllBooksByCriteria(title, author)
+      // Update your state or perform any other action with the search results
+      console.log('Search results:', searchResults)
+    } catch (error) {
+      console.error('Error searching books:', error)
+    }
+  }
+
   return (
     <>
     {shouldRenderNavBar &&<NavBar />}
