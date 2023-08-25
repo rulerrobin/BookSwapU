@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import SearchBar from "./SearchBar"
 import UpdateEntry from "./UpdateEntry"
+import { getAllBooksByCriteria } from "./api"
 
 const UsersBooks = ({ entries, removeEntry, updateEntry, navigate }) => {
   const [showUpdateForm, setShowUpdateForm] = useState(false)
@@ -12,29 +13,39 @@ const UsersBooks = ({ entries, removeEntry, updateEntry, navigate }) => {
     setFilteredEntries(entries)
   }, [entries])
 
-const handleSearch = (searchTitle, searchAuthor) => {
-    const cleanSearchTitle = searchTitle.toLowerCase().replace(/\s/g, '')
-    const cleanSearchAuthor = searchAuthor.toLowerCase().replace(/\s/g, '')
+// const handleSearch = (searchTitle, searchAuthor) => {
+//     const cleanSearchTitle = searchTitle.toLowerCase().replace(/\s/g, '')
+//     const cleanSearchAuthor = searchAuthor.toLowerCase().replace(/\s/g, '')
 
-    const filteredEntries = entries.filter((entry) => {
-    const cleanEntryTitle = entry.title.toLowerCase().replace(/\s/g, '')
-    const cleanEntryAuthor = entry.author.toLowerCase().replace(/\s/g, '')
+//     const filteredEntries = entries.filter((entry) => {
+//     const cleanEntryTitle = entry.title.toLowerCase().replace(/\s/g, '')
+//     const cleanEntryAuthor = entry.author.toLowerCase().replace(/\s/g, '')
 
-    const matchesTitle = cleanEntryTitle.includes(cleanSearchTitle)
-    const matchesAuthor = cleanEntryAuthor.includes(cleanSearchAuthor)
+//     const matchesTitle = cleanEntryTitle.includes(cleanSearchTitle)
+//     const matchesAuthor = cleanEntryAuthor.includes(cleanSearchAuthor)
 
-      if (cleanSearchTitle && cleanSearchAuthor) {
-        return matchesTitle && matchesAuthor
-      } else if (cleanSearchTitle) {
-        return matchesTitle
-      } else if (cleanSearchAuthor) {
-        return matchesAuthor
-      }
-      return true
-    })
+//       if (cleanSearchTitle && cleanSearchAuthor) {
+//         return matchesTitle && matchesAuthor
+//       } else if (cleanSearchTitle) {
+//         return matchesTitle
+//       } else if (cleanSearchAuthor) {
+//         return matchesAuthor
+//       }
+//       return true
+//     })
 
-    setFilteredEntries(filteredEntries)
+//     setFilteredEntries(filteredEntries)
+//   }
+
+const handleSearch = async (searchTitle, searchAuthor) => {
+    try {
+      const searchResults = await getAllBooksByCriteria(searchTitle, searchAuthor)
+      setFilteredEntries(searchResults)
+    } catch (error) {
+      console.error('Error searching books:', error)
+    }
   }
+
 
   const handleRemove = (index) => {
     removeEntry(index)
@@ -51,6 +62,11 @@ const handleSearch = (searchTitle, searchAuthor) => {
     <>
       <h2>My Books</h2>
       <SearchBar onSearch={handleSearch} />
+      <div className="d-grid gap-2">
+      <Link to="/newentry" className="btn btn-primary btn-lg" type="button">
+        Add New Book
+      </Link>
+      </div>
       <ul>
         {filteredEntries.map((entry, index) => (
           <li key={index}>
@@ -65,7 +81,7 @@ const handleSearch = (searchTitle, searchAuthor) => {
                 <strong>Condition:</strong> {entry.condition}
               </p>
               <p>
-                <strong>User:</strong> {entry.user}
+                <strong>User:</strong> {entry.user.username}
               </p>
               <p>
                 <strong>Status:</strong> {entry.status}
@@ -92,9 +108,6 @@ const handleSearch = (searchTitle, searchAuthor) => {
           </li>
         ))}
       </ul>
-      <Link to="/newentry" className="btn btn-primary mt-3">
-        Add New Book
-      </Link>
       {showUpdateForm && selectedEntryIndex !== null && (
         <UpdateEntry
           entry={entries[selectedEntryIndex]}
@@ -110,3 +123,4 @@ const handleSearch = (searchTitle, searchAuthor) => {
 }
 
 export default UsersBooks
+

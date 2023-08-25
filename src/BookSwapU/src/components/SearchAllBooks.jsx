@@ -5,15 +5,35 @@ import { getAllBooksByCriteria } from './api'
 const SearchAllBooks = () => {
   const [searchResults, setSearchResults] = useState([])
   
-  const handleSearchAllBooks = async (title, author) => {
-    try {
-      const searchResults = await getAllBooksByCriteria(title, author)
-      setSearchResults(searchResults)
-    } catch (error) {
-      console.error(`Error searching books: ${error.message}`)
-    }
-  }
+//   const handleSearchAllBooks = async (title, author) => {
+//     try {
+//       const searchResults = await getAllBooksByCriteria(title, author)
+//       setSearchResults(searchResults)
+//     } catch (error) {
+//       console.error(`Error searching books: ${error.message}`)
+//     }
+//   }
 
+const handleSearchAllBooks = async (title, author) => {
+    try {
+        const userId = '64e6da496c939f3eb875173b'
+      // Call the API function to search for all books based on title and author
+      const searchResults = await getAllBooksByCriteria(title, author)
+      
+      // Fetch user-specific books based on their ID
+      const response = await fetch(`http://localhost:3000/user_inventory/search?title=${title}&author=${author}&userId=${userId}`)
+      if (response.ok) {
+        const userBooks = await response.json()
+        // Combine searchResults and userBooks as needed
+        const combinedResults = [...searchResults, ...userBooks]
+        setSearchResults(combinedResults)
+      } else {
+        console.error('Error fetching user books:', response.statusText)
+      }
+    } catch (error) {
+      console.error('Error searching books:', error)
+    }
+}
 
   return (
     <div>

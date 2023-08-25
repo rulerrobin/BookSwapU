@@ -10,6 +10,7 @@ import NavBar from "./NavBar"
 import UpdateEntry from "./UpdateEntry"
 import { getAllBooksByCriteria } from './api'
 import SearchAllBooks from "./SearchAllBooks"
+import ResponsiveWrapper from './ResponsiveWrapper'
 
 const seedEntries = [
   {
@@ -110,6 +111,7 @@ function App() {
   return (
     <>
       <NavBar />
+      {/* <ResponsiveWrapper> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<SearchAllBooks onSearch={handleSearchAllBooks}/>} />
@@ -137,6 +139,7 @@ function App() {
         />
         <Route path="*" element={<h3>Page not found</h3>} />
       </Routes>
+      {/* </ResponsiveWrapper> */}
     </>
   )
 }
