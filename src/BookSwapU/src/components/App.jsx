@@ -13,6 +13,7 @@ import LoginRegister from "./LoginRegister"
 import UpdateEntry from "./UpdateEntry"
 import { getAllBooksByCriteria } from './api'
 import SearchAllBooks from "./SearchAllBooks"
+import ResponsiveWrapper from './ResponsiveWrapper'
 
 const seedEntries = [
   {
@@ -145,6 +146,7 @@ function App() {
         />
         <Route path="*" element={<h3>Page not found</h3>} />
       </Routes>
+      {/* </ResponsiveWrapper> */}
     </>
   )
 }
