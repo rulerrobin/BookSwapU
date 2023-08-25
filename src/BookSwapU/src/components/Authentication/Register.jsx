@@ -1,22 +1,74 @@
 import React, { useState } from 'react'
-import { Stack, HStack, VStack, Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react'
+import { VStack, Input, InputGroup, InputRightElement, Button, useToast } from '@chakra-ui/react'
 import { FormControl, FormLabel } from '@chakra-ui/form-control'
 
 const Register = () => {
+   // State variables
    const [show, setShow] = useState(false)
    const [name, setName] = useState()
    const [email, setEmail] = useState()
    const [password, setPassword] = useState()
    const [confirmPassword, setConfirmPassword] = useState()
-   const [pic, setPic] = useState()
+   // const [pic, setPic] = useState()
+   const [loading, setLoading] = useState(false)
 
+   // Toggle password visibility
    const handleClick = () => setShow(!show)
 
-   const postDetails = (pics) => {}
+   // Profile Pic Code if there is time will add as currently not working
 
+   // const toast = useToast()
+
+   // const postDetails = (pics) => {
+   //    setLoading(true)
+   //    if(pics===undefined) {
+   //       toast({
+   //          title: 'Please Select an Image!',
+   //          status: 'warning',
+   //          duration: 5000,
+   //          isClosable: true,
+   //          position: "bottom",
+   //        })
+   //        // If Pic is undefined do not move forward
+   //        return;
+   //      }
+
+   //       if(pics.type==="image/jpeg" || pics.type==="image/png") {
+   //          const data = new FormData()
+   //          data.append("file", pic)
+   //          data.append("upload_preset", "BookSwapU")
+   //          data.append("cloud_name", "dqrctbamt")
+   //          fetch("https://api.cloudinary.com/v1_1/dqrctbamt/image/upload",  {
+   //             method:'post',
+   //             body: data,
+   //       }).then((res) => res.json())
+   //          .then((response) => {
+   //             setPic(response.signature.toString())
+   //             console.log(response)
+   //             setLoading(false)
+   //       })
+   //       .catch((err) => {
+   //          console.log(err)
+   //          setLoading(false)
+   //      })
+   //       } else {
+   //          toast({
+   //             title: 'Please Select an Image!',
+   //             status: 'warning',
+   //             duration: 5000,
+   //             isClosable: true,
+   //             position: "bottom",
+   //       })
+   //       setLoading(false)
+   //       return
+   //    }
+   // }
+
+   // Submit handler (to be implemented)
    const submitHandler = () => {}
+      // Implement registration logic here
 
-  return (
+   return (
 
    <VStack spacing='5px'>
       {/* User name input */}
@@ -60,15 +112,18 @@ const Register = () => {
             placeholder='Confirm Password'
             onChange={(e) => setConfirmPassword(e.target.value)}
          />
-         <InputRightElement>
+         <InputRightElement width='4.5rem'>
             <Button h='1.75rem' size='sm' onClick={handleClick}>
                {show ? 'Hide' : 'Show'}
             </Button>
          </InputRightElement>
          </InputGroup>
       </FormControl>
+
+      {/* Profile pic to be added if time able */}
+
       {/* User profile pic input */}
-      <FormControl id='pic' isRequired>
+      {/* <FormControl id='pic' isRequired>
          <FormLabel>Upload your picture</FormLabel>
          <Input 
             type='file'
@@ -76,13 +131,15 @@ const Register = () => {
             accept='image/*'
             onChange={(e) => postDetails(e.target.files[0])}
          />
-      </FormControl>
+      </FormControl> */}
 
+      {/* Register button */}
       <Button 
       colorScheme='blue'
       width='100%'
       style={{ marginTop: 15}}
       onClick={submitHandler}
+      isLoading={loading}
       >
          Register
       </Button>
