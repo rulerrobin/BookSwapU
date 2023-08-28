@@ -40,6 +40,7 @@ const UsersBooks = ({ entries, removeEntry, updateEntry, navigate }) => {
 const handleSearch = async (searchTitle, searchAuthor) => {
     try {
       const searchResults = await getAllBooksByCriteria(searchTitle, searchAuthor)
+      console.log('Search results from API:', searchResults)
       setFilteredEntries(searchResults)
     } catch (error) {
       console.error('Error searching books:', error)
@@ -62,35 +63,35 @@ const handleSearch = async (searchTitle, searchAuthor) => {
     <>
       <h2>My Books</h2>
       <SearchBar onSearch={handleSearch} />
-      <div className="d-grid gap-2">
-      <Link to="/newentry" className="btn btn-primary btn-lg" type="button">
-        Add New Book
-      </Link>
-      </div>
+        <div className="d-grid gap-2">
+        <Link to="/newentry" className="btn btn-primary btn-lg" type="button">
+          Add New Book
+        </Link>
+        </div>
       <ul>
         {filteredEntries.map((entry, index) => (
-          <li key={index}>
+          <li key={entry._id}>
             <div>
               <p>
-                <strong>Title:</strong> {entry.title}
+                <strong>Title:</strong> {entry.book ? entry.book.title : 'N/A'}
               </p>
               <p>
-                <strong>Author:</strong> {entry.author}
+                <strong>Author:</strong> {entry.book ? entry.book.author : 'N/A'}
               </p>
               <p>
-                <strong>Condition:</strong> {entry.condition}
+                <strong>Condition:</strong> {entry.book ? entry.book.condition : 'N/A'}
               </p>
               <p>
-                <strong>User:</strong> {entry.user.username}
+                <strong>User:</strong> {entry.user ? entry.user.username : 'N/A'}
               </p>
               <p>
-                <strong>Status:</strong> {entry.status}
+                <strong>Status:</strong> {entry.book ? entry.book.status : 'N/A'}
               </p>
               <p>
-                <strong>Edition:</strong> {entry.edition}
+                <strong>Edition:</strong> {entry.book ? entry.book.edition : 'N/A'}
               </p>
               <p>
-                <strong>Year:</strong> {entry.year}
+                <strong>Year:</strong> {entry.book ? entry.book.year : 'N/A'}
               </p>
               <button
                 className="btn btn-primary mt-3"

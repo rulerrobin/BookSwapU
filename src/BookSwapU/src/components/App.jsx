@@ -7,13 +7,11 @@ import Home from "./Home"
 import Profile from "./Profile"
 import NewEntry from "./NewEntry"
 import NavBar from "./NavBar"
-import AddEditBook from "./AddEditBook"
 import LoginRegister from "./LoginRegister"
-// import "./App.css"
 import UpdateEntry from "./UpdateEntry"
 import { getAllBooksByCriteria } from './api'
 import SearchAllBooks from "./SearchAllBooks"
-import ResponsiveWrapper from './ResponsiveWrapper'
+// import ResponsiveWrapper from './ResponsiveWrapper'
 
 const seedEntries = [
   {
@@ -168,7 +166,6 @@ function App() {
         />
         <Route path="*" element={<h3>Page not found</h3>} />
       </Routes>
-      {/* </ResponsiveWrapper> */}
     </>
   )
 }
