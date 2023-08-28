@@ -76,6 +76,7 @@ const Register = () => {
       // Implement registration logic here
       setLoading(true)
       if (!name || !email || !password || !!confirmPassword) {
+         // Display a warning toast if any field is not filled
          toast({
             title: "Please fill all the fields",
             status: "warning",
@@ -88,6 +89,7 @@ const Register = () => {
       }
 
          if (password !== confirmPassword) {
+            // Display a warning toast if passwords do not match
             toast({
                title: "Passwords do not match",
                status: "warning",
@@ -105,10 +107,11 @@ const Register = () => {
                   "Content-Type": "application/json"
                }
             }
-
+            // Send a registration request to the server
             const { data } = await axios.post('/api/user', { name, email, password },
             config
             )
+            // Display a success toast and store user info in local storage
             toast({
                title: "Registration successful",
                status: "success",
@@ -120,8 +123,9 @@ const Register = () => {
             localStorage.setItem('userInfo', JSON.stringify(data))
 
             setLoading(false)
-            history.push('/')
+            history.push('/')  // Redirect to the home page
          } catch (error) {
+            // Display an error toast if an error occurs during registration
             toast({
                title: "Error has occurred",
                description: error.response.data.message,
