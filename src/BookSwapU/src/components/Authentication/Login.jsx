@@ -48,18 +48,19 @@ const Login = () => {
          Login
       </Button>
 
-      {/* Guest login for testing purposes also possibly keep for users to look around */}
-      <Button 
+      {/* Guest login for testing purposes also possibly keep for users to look around, currently does not work will try to fix later */}
+      {/* <Button 
       variant='solid'
       colorScheme='red'
       width='100%'
       onClick={() => {
          setEmail("guest@example.com")
          setPassword("123456")
+         console.log(email, password)
       }}
       >
          Guest User
-      </Button>
+      </Button> */}
 
    </VStack>
   )

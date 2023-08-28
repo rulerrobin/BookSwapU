@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
-import { VStack, Input, InputGroup, InputRightElement, Button, useToast } from '@chakra-ui/react'
-import { FormControl, FormLabel } from '@chakra-ui/form-control'
+import { useHistory } from "react-router"
+import { FormControl, FormLabel } from "@chakra-ui/form-control"
+import { Input, InputGroup, InputRightElement } from "@chakra-ui/input"
+import { VStack } from "@chakra-ui/layout"
+import { Button } from "@chakra-ui/button"
+import { useToast } from "@chakra-ui/toast"
+import axios from 'axios'
 
 const Register = () => {
    // State variables
@@ -11,13 +16,15 @@ const Register = () => {
    const [confirmPassword, setConfirmPassword] = useState()
    // const [pic, setPic] = useState()
    const [loading, setLoading] = useState(false)
+   const history = useHistory()
+   const toast = useToast()
 
    // Toggle password visibility
    const handleClick = () => setShow(!show)
 
    // Profile Pic Code if there is time will add as currently not working
 
-   // const toast = useToast()
+
 
    // const postDetails = (pics) => {
    //    setLoading(true)
@@ -65,8 +72,71 @@ const Register = () => {
    // }
 
    // Submit handler (to be implemented)
-   const submitHandler = () => {}
+   const submitHandler = async () => {
       // Implement registration logic here
+      setLoading(true)
+      if (!name || !email || !password || !!confirmPassword) {
+         // Display a warning toast if any field is not filled
+         toast({
+            title: "Please fill all the fields",
+            status: "warning",
+            duration: 5000,
+            isClosable: true,
+            position: "bottom"
+         })
+         setLoading(false)
+         return
+      }
+
+         if (password !== confirmPassword) {
+            // Display a warning toast if passwords do not match
+            toast({
+               title: "Passwords do not match",
+               status: "warning",
+               duration: 5000,
+               isClosable: true,
+               position: "bottom"
+            })
+            return
+         }
+         console.log(name, email, password)
+
+         try {
+            const config = {
+               headers: {
+                  "Content-Type": "application/json"
+               }
+            }
+            // Send a registration request to the server
+            const { data } = await axios.post('/api/user', { name, email, password },
+            config
+            )
+            // Display a success toast and store user info in local storage
+            toast({
+               title: "Registration successful",
+               status: "success",
+               duration: 5000,
+               isClosable: true,
+               position: "bottom"
+            })
+
+            localStorage.setItem('userInfo', JSON.stringify(data))
+
+            setLoading(false)
+            history.push('/')  // Redirect to the home page
+         } catch (error) {
+            // Display an error toast if an error occurs during registration
+            toast({
+               title: "Error has occurred",
+               description: error.response.data.message,
+               status: "error",
+               duration: 5000,
+               isClosable: true,
+               position: "bottom"
+            })
+            setLoading(false)
+         }
+   }
 
    return (
 
