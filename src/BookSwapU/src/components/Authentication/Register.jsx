@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory } from "react-router"
+import { useNavigate } from "react-router-dom"
 import { FormControl, FormLabel } from "@chakra-ui/form-control"
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input"
 import { VStack } from "@chakra-ui/layout"
@@ -7,25 +7,23 @@ import { Button } from "@chakra-ui/button"
 import { useToast } from "@chakra-ui/toast"
 import axios from 'axios'
 
+
 const Register = () => {
    // State variables
    const [show, setShow] = useState(false)
-   const [name, setName] = useState()
+   const [username, setName] = useState()
    const [email, setEmail] = useState()
    const [password, setPassword] = useState()
    const [confirmPassword, setConfirmPassword] = useState()
    // const [pic, setPic] = useState()
    const [loading, setLoading] = useState(false)
-   const history = useHistory()
+   const navigate = useNavigate()
    const toast = useToast()
 
    // Toggle password visibility
    const handleClick = () => setShow(!show)
 
    // Profile Pic Code if there is time will add as currently not working
-
-
-
    // const postDetails = (pics) => {
    //    setLoading(true)
    //    if(pics===undefined) {
@@ -75,7 +73,7 @@ const Register = () => {
    const submitHandler = async () => {
       // Implement registration logic here
       setLoading(true)
-      if (!name || !email || !password || !!confirmPassword) {
+      if (!username || !email || !password || !confirmPassword) {
          // Display a warning toast if any field is not filled
          toast({
             title: "Please fill all the fields",
@@ -97,9 +95,10 @@ const Register = () => {
                isClosable: true,
                position: "bottom"
             })
+            setLoading(false)
             return
          }
-         console.log(name, email, password)
+         console.log(username, email, password)
 
          try {
             const config = {
@@ -108,7 +107,8 @@ const Register = () => {
                }
             }
             // Send a registration request to the server
-            const { data } = await axios.post('/api/user', { name, email, password },
+            const { data } = await axios.post('http://localhost:5000/api/user', 
+            { username, email, password },
             config
             )
             // Display a success toast and store user info in local storage
@@ -123,7 +123,7 @@ const Register = () => {
             localStorage.setItem('userInfo', JSON.stringify(data))
 
             setLoading(false)
-            history.push('/')  // Redirect to the home page
+            navigate('/search')  // Redirect to the home page
          } catch (error) {
             // Display an error toast if an error occurs during registration
             toast({
@@ -134,6 +134,7 @@ const Register = () => {
                isClosable: true,
                position: "bottom"
             })
+            console.log(error)
             setLoading(false)
          }
    }

@@ -1,17 +1,72 @@
 import React, { useState } from 'react'
 import { Stack, HStack, VStack, Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react'
 import { FormControl, FormLabel } from '@chakra-ui/form-control'
+import { useNavigate } from 'react-router-dom'
+import { useToast } from '@chakra-ui/toast'
+import axios from 'axios'
 
 const Login = () => {
    const [show, setShow] = useState(false)
    const [email, setEmail] = useState()
    const [password, setPassword] = useState()
+   const [loading, setLoading] = useState(false)
 
+   const toast = useToast()
+   const navigate = useNavigate()
    const handleClick = () => setShow(!show)
 
-   const submitHandler = () => {}
+   const submitHandler = async () => {
+      setLoading(true)
+      if (!email || !password) {
+         // Display a warning toast if any field is not filled
+         toast({
+            title: "Please fill all the fields",
+            status: "warning",
+            duration: 5000,
+            isClosable: true,
+            position: "bottom"
+         })
+         setLoading(false)
+         return
+      }
 
-  return (
+      console.log(email, password)
+      try {
+         const config = {
+            headers: {
+               "Content-Type": "application/json"
+            }
+         }
+         // Send a registration request to the server
+         const { data } = await axios.post(
+            'http://localhost:5000/api/user/login', 
+            { email, password },
+            config
+         )
+         // Display a success toast and store user info in local storage
+         toast({
+            title: "Login successful",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+            position: "bottom"
+         })
+         localStorage.setItem("userInfo", JSON.stringify(data))
+         setLoading(false)
+         navigate('/search')
+      } catch (error) {
+         toast({
+            title: "Error has occurred",
+            description: error.response.data.message,
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+            position: "bottom"
+         })
+         setLoading(false)
+      }
+   }
+   return (
 
    <VStack spacing='5px'>
       {/* User email input */}
@@ -40,10 +95,11 @@ const Login = () => {
       </FormControl>
 
       <Button 
-      colorScheme='blue'
-      width='100%'
-      style={{ marginTop: 15}}
-      onClick={submitHandler}
+         colorScheme='blue'
+         width='100%'
+         style={{ marginTop: 15}}
+         onClick={submitHandler}
+         isLoading={loading}
       >
          Login
       </Button>
