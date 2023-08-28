@@ -7,7 +7,7 @@ const UpdateEntry = ({ entry, updateEntry }) => {
   const [title, setTitle] = useState(entry.title)
   const [author, setAuthor] = useState(entry.author)
   const [condition, setCondition] = useState(entry.condition)
-  const [user, setUser] = useState(entry.user)
+  const [user, setUser] = useState(entry.user.username)
   const [status, setStatus] = useState(entry.status)
   const [edition, setEdition] = useState(entry.edition)
   const [year, setYear] = useState(entry.year)
@@ -15,13 +15,21 @@ const UpdateEntry = ({ entry, updateEntry }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
       const updatedInfo = {
-      title,
-      author,
-      condition,
-      user,
-      status,
-      edition,
-      year,
+        book: {
+          title,
+          author,
+          condition,
+          edition,
+          status,
+          year,
+        },
+        user: {
+          _id: entry.user._id,
+          username: user,
+          email: entry.user.email, 
+          password: entry.user.password, 
+        },
+        __v: entry.__v,
     }
     updateEntry(updatedInfo)
     navigate('/usersbooks')
@@ -94,3 +102,5 @@ const UpdateEntry = ({ entry, updateEntry }) => {
 }
 
 export default UpdateEntry
+
+
