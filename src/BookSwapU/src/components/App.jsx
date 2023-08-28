@@ -166,6 +166,7 @@ function App() {
         />
         <Route path="*" element={<h3>Page not found</h3>} />
       </Routes>
+      {/* </ResponsiveWrapper> */}
     </>
   )
 }

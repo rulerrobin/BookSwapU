@@ -40,7 +40,6 @@ const UsersBooks = ({ entries, removeEntry, updateEntry, navigate }) => {
 const handleSearch = async (searchTitle, searchAuthor) => {
     try {
       const searchResults = await getAllBooksByCriteria(searchTitle, searchAuthor)
-      console.log('Search results from API:', searchResults)
       setFilteredEntries(searchResults)
     } catch (error) {
       console.error('Error searching books:', error)
