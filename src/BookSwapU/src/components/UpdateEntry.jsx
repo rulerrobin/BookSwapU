@@ -1,16 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const UpdateEntry = ({ entry, updateEntry }) => {
   const navigate = useNavigate()
 
-  const [title, setTitle] = useState(entry.title)
-  const [author, setAuthor] = useState(entry.author)
-  const [condition, setCondition] = useState(entry.condition)
-  const [user, setUser] = useState(entry.user.username)
-  const [status, setStatus] = useState(entry.status)
-  const [edition, setEdition] = useState(entry.edition)
-  const [year, setYear] = useState(entry.year)
+  const [title, setTitle] = useState(entry.title || '')
+  const [author, setAuthor] = useState(entry.author || '')
+  const [condition, setCondition] = useState(entry.condition || '')
+  const [user, setUser] = useState(entry.user.username || '')
+  const [status, setStatus] = useState(entry.status || '')
+  const [edition, setEdition] = useState(entry.edition || '')
+  const [year, setYear] = useState(entry.year || '')
+
+  useEffect(() => {
+    setTitle(entry.book.title || '')
+    setAuthor(entry.book.author || '')
+    setCondition(entry.book.condition || '')
+    setStatus(entry.book.status || '')
+    setEdition(entry.book.edition || '')
+    setYear(entry.book.year || '')
+  }, [entry])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -68,6 +77,7 @@ const UpdateEntry = ({ entry, updateEntry }) => {
             type="text"
             placeholder="User"
             value={user}
+            disabled
             onChange={(e) => setUser(e.target.value)}
           />
         </div>

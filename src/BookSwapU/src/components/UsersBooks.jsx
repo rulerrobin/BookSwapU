@@ -13,30 +13,6 @@ const UsersBooks = ({ entries, removeEntry, updateEntry, navigate }) => {
     setFilteredEntries(entries)
   }, [entries])
 
-// const handleSearch = (searchTitle, searchAuthor) => {
-//     const cleanSearchTitle = searchTitle.toLowerCase().replace(/\s/g, '')
-//     const cleanSearchAuthor = searchAuthor.toLowerCase().replace(/\s/g, '')
-
-//     const filteredEntries = entries.filter((entry) => {
-//     const cleanEntryTitle = entry.title.toLowerCase().replace(/\s/g, '')
-//     const cleanEntryAuthor = entry.author.toLowerCase().replace(/\s/g, '')
-
-//     const matchesTitle = cleanEntryTitle.includes(cleanSearchTitle)
-//     const matchesAuthor = cleanEntryAuthor.includes(cleanSearchAuthor)
-
-//       if (cleanSearchTitle && cleanSearchAuthor) {
-//         return matchesTitle && matchesAuthor
-//       } else if (cleanSearchTitle) {
-//         return matchesTitle
-//       } else if (cleanSearchAuthor) {
-//         return matchesAuthor
-//       }
-//       return true
-//     })
-
-//     setFilteredEntries(filteredEntries)
-//   }
-
 const handleSearch = async (searchTitle, searchAuthor) => {
     try {
       const searchResults = await getAllBooksByCriteria(searchTitle, searchAuthor)

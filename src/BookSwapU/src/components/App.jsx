@@ -101,12 +101,6 @@ function App() {
     )
   }
 
-  // async function addEntry(title, author, condition, user, status, edition, year) {
-  //   const newEntry = { title, author, condition, user, status, edition, year }
-  //   setEntries([...entries, newEntry])
-  //   nav('/usersbooks')
-  // }
-
   async function addEntry(
     title,
     author,
@@ -166,30 +160,6 @@ function App() {
     }
   }
 
-  // async function removeEntry(index) {
-  //   const updatedEntries = [...entries]
-  //   updatedEntries.splice(index, 1)
-  //   setEntries(updatedEntries)
-  // }
-
-  // async function updateEntry(index, updatedInfo) {
-  //   const updatedEntries = [...entries]
-  //   updatedEntries[index] = { ...updatedEntries[index], ...updatedInfo }
-  //   setEntries(updatedEntries)
-  //   nav("/usersbooks")
-  // }
-
-  // const handleSearchAllBooks = async (title, author) => {
-  //   try {
-  //     // Call the API function to search for all books based on title and author
-  //     const searchResults = await getAllBooksByCriteria(title, author)
-  //     // Update your state or perform any other action with the search results
-  //     console.log('Search results:', searchResults)
-  //   } catch (error) {
-  //     console.error('Error searching books:', error)
-  //   }
-  // }
-
   return (
     <>
     {shouldRenderNavBar &&<NavBar />}
@@ -221,7 +191,6 @@ function App() {
         />
         <Route path="*" element={<h3>Page not found</h3>} />
       </Routes>
-      {/* </ResponsiveWrapper> */}
     </>
   )
 }
