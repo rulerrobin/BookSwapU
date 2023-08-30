@@ -6,12 +6,12 @@ function ShowEntry({ entry }) {
       <h2>{entry.title}</h2>
       <p>Author: {entry.author}</p>
       <p>Condition: {entry.condition}</p>
-      <p>User: {entry.user}</p>
+      <p>User: {user.username}</p>
       <p>Status: {entry.status}</p>
       <p>Edition: {entry.edition}</p>
       <p>Year: {entry.year}</p>
     </div>
-  )
+  );
 }
 
 export default ShowEntry

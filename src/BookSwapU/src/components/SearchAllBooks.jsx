@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import SearchBar from './SearchBar'
-import { getAllBooksByCriteria } from './api'
+import { getAllBooks } from './api'
 
 const SearchAllBooks = () => {
   const [searchResults, setSearchResults] = useState([])
 
-  const handleSearchAllBooks = async (title, author) => {
+  const handleSearch = async (title, author) => {
     try {
       setSearchResults([]) // Clear previous results
       // Call the API function to search for all books based on title and author
-      const allBooksResults = await getAllBooksByCriteria(title, author)
+      const allBooksResults = await getAllBooks(title, author)
       console.log('Search results in SearchAllBooks:', allBooksResults)
       setSearchResults(allBooksResults);
     } catch (error) {
@@ -20,7 +20,7 @@ const SearchAllBooks = () => {
   return (
     <div>
       <h2>Search Books</h2>
-      <SearchBar onSearch={handleSearchAllBooks} />
+      <SearchBar onSearch={handleSearch} />
       <ul>
         {searchResults.map((result) => (
           <li key={result.book._id}>
