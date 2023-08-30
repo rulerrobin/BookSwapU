@@ -10,8 +10,6 @@ import { Box } from '@chakra-ui/react'
 const Messages = () => {
   const { user } = ChatState()
 
-
-
   return (
     <div style ={{ width: "100%" }}>
       {user && <SideDrawer />}
