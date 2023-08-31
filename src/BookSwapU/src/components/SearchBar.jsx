@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, showAllButton = true }) => {
   const [searchTitle, setSearchTitle] = useState('')
   const [searchAuthor, setSearchAuthor] = useState('')
 
@@ -32,9 +32,9 @@ const SearchBar = ({ onSearch }) => {
       </button>
       </div>
       <div>
-      <button className="btn btn-secondary mt-3" onClick={() => onSearch('', '')}>
+      {showAllButton && <button className="btn btn-secondary mt-3" onClick={() => onSearch('', '')}>
                 Show All
-            </button>
+            </button>}
             </div>
     </div>
   )

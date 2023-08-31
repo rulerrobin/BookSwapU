@@ -4,42 +4,36 @@ import { useNavigate } from 'react-router-dom'
 const UpdateEntry = ({ entry, updateEntry }) => {
   const navigate = useNavigate()
 
-  const [title, setTitle] = useState(entry.title || '')
-  const [author, setAuthor] = useState(entry.author || '')
-  const [condition, setCondition] = useState(entry.condition || '')
-  const [user, setUser] = useState(entry.user.username || '')
-  const [status, setStatus] = useState(entry.status || '')
-  const [edition, setEdition] = useState(entry.edition || '')
-  const [year, setYear] = useState(entry.year || '')
+  const [title, setTitle] = useState(entry?.title || '')
+  const [author, setAuthor] = useState(entry?.author || '')
+  const [condition, setCondition] = useState(entry?.condition || '')
+  const [user, setUser] = useState(entry?.user?.username || '')
+  const [status, setStatus] = useState(entry?.status || '')
+  const [edition, setEdition] = useState(entry?.edition || '')
+  const [year, setYear] = useState(entry?.year || '')
 
   useEffect(() => {
-    setTitle(entry.book.title || '')
-    setAuthor(entry.book.author || '')
-    setCondition(entry.book.condition || '')
-    setStatus(entry.book.status || '')
-    setEdition(entry.book.edition || '')
-    setYear(entry.book.year || '')
+    setTitle(entry?.title || '')
+    setAuthor(entry?.author || '')
+    setCondition(entry?.condition || '')
+    setStatus(entry?.status || '')
+    setEdition(entry?.edition || '')
+    setYear(entry?.year || '')
   }, [entry])
+
+  console.log(entry)
 
   const handleSubmit = (e) => {
     e.preventDefault()
       const updatedInfo = {
-        book: {
           title,
           author,
           condition,
           edition,
           status,
           year,
-        },
-        user: {
-          _id: entry.user._id,
-          username: user,
-          email: entry.user.email, 
-          password: entry.user.password, 
-        },
-        __v: entry.__v,
     }
+    console.log("Updated Info:", updatedInfo);
     updateEntry(updatedInfo)
     navigate('/usersbooks')
   }

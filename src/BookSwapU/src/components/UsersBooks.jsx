@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
-import UpdateEntry from "./UpdateEntry";
 import { getUserBooks } from "./api";
 
-const UsersBooks = ({ token, entries, removeEntry, updateEntry, navigate }) => {
-  console.log("Entries in UsersBooks:", entries);
-  const [showUpdateForm, setShowUpdateForm] = useState(false);
-  const [selectedEntryIndex, setSelectedEntryIndex] = useState(null);
+const UsersBooks = ({ token,
+  // entries,
+  removeEntry, navigate }) => {
   const [filteredEntries, setFilteredEntries] = useState([]);
   const [allEntries, setAllEntries] = useState([]);
- 
-  useEffect(() => {
-    setFilteredEntries(entries);
-  }, [entries]);
+
+  console.log("filteredentries", filteredEntries)
 
   useEffect(() => {
     // This function fetches the books for the logged-in user
@@ -29,7 +25,7 @@ const UsersBooks = ({ token, entries, removeEntry, updateEntry, navigate }) => {
 
     fetchUserBooks();
   }, [])
-
+  
 const handleSearch = (searchTitle, searchAuthor) => {
   if (!searchTitle && !searchAuthor) {
       setFilteredEntries(allEntries);
@@ -37,27 +33,23 @@ const handleSearch = (searchTitle, searchAuthor) => {
   }
 
   const results = allEntries.filter(entry => { 
-      const titleMatch = searchTitle ? entry.book.title.toLowerCase().includes(searchTitle.toLowerCase()) : true;
-      const authorMatch = searchAuthor ? entry.book.author.toLowerCase().includes(searchAuthor.toLowerCase()) : true;
+      const titleMatch = searchTitle ? entry.title.toLowerCase().includes(searchTitle.toLowerCase()) : true;
+      const authorMatch = searchAuthor ? entry.author.toLowerCase().includes(searchAuthor.toLowerCase()) : true;
       return titleMatch && authorMatch;
   });
 
   setFilteredEntries(results);
 };
 
-const handleRemove = (entry) => {
-  removeEntry(token, entry);
+const handleRemove = async (entry) => {
+  const isRemoved = await removeEntry(token, entry);
 
+  if (isRemoved) {
   const updatedAllEntries = allEntries.filter(e => e._id !== entry._id);
     setAllEntries(updatedAllEntries);
     setFilteredEntries(updatedAllEntries);
 }
-
-  const handleUpdate = (index) => {
-    setSelectedEntryIndex(index);
-    setShowUpdateForm(true);
-    navigate(`/updateentry/${index}`);
-  };
+}
   
   return (
     <>
@@ -70,34 +62,29 @@ const handleRemove = (entry) => {
       </div>
       <ul>
         {filteredEntries.map((entry) => (
-        
           <li key={entry._id}>
             <div>
               <p>
-                <strong>Title:</strong> {entry.book ? entry.book.title : "N/A"}
+                <strong>Title:</strong> {entry ? entry.title : "N/A"}
               </p>
               <p>
                 <strong>Author:</strong>{" "}
-                {entry.book ? entry.book.author : "N/A"}
+                {entry ? entry.author : "N/A"}
               </p>
               <p>
                 <strong>Condition:</strong>{" "}
-                {entry.book ? entry.book.condition : "N/A"}
-              </p>
-              <p>
-                <strong>User:</strong>{" "}
-                {entry.user ? entry.user.username : "N/A"}
+                {entry ? entry.condition : "N/A"}
               </p>
               <p>
                 <strong>Status:</strong>{" "}
-                {entry.book ? entry.book.status : "N/A"}
+                {entry ? entry.status : "N/A"}
               </p>
               <p>
                 <strong>Edition:</strong>{" "}
-                {entry.book ? entry.book.edition : "N/A"}
+                {entry ? entry.edition : "N/A"}
               </p>
               <p>
-                <strong>Year:</strong> {entry.book ? entry.book.year : "N/A"}
+                <strong>Year:</strong> {entry ? entry.year : "N/A"}
               </p>
               <button
                 className="btn btn-primary mt-3"
@@ -107,7 +94,7 @@ const handleRemove = (entry) => {
               </button>
               <button
                 className="btn btn-primary mt-3"
-                onClick={() => handleUpdate(index)}
+                onClick={() => navigate(`/updateentry/${entry._id}`)}
               >
                 Update
               </button>
@@ -115,16 +102,6 @@ const handleRemove = (entry) => {
           </li>
         ))}
       </ul>
-      {showUpdateForm && selectedEntryIndex !== null && (
-        <UpdateEntry
-          entry={entries[selectedEntryIndex]}
-          updateEntry={(updatedInfo) => {
-            updateEntry(selectedEntryIndex, updatedInfo);
-            setShowUpdateForm(false);
-          }}
-          index={selectedEntryIndex}
-        />
-      )}
     </>
   );
 };

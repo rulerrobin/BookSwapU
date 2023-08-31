@@ -1,6 +1,6 @@
 import axiosInstance from "./axiosInstance"
 
-// Function to get books of a specific user
+// Fetch all books associated with the currently logged-in user
 export async function getUserBooks() {
   try {
     const response = await axiosInstance.get('/books');
@@ -10,11 +10,44 @@ export async function getUserBooks() {
   }
 }
 
-// Function to get all books from all users
-export async function getAllBooks() {
+// Fetch details of a specific book using its ID
+export async function getOneBook(bookId, token) {
   try {
-    const response = await axiosInstance.get('/user_inventory/search');
+    const headers = {};
+
+    // If a token is provided, add it to the request headers
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
+
+    const response = await axiosInstance.get(`/books/${bookId}`, {
+      headers: headers
+    });
+
     return response.data;
+  } catch (error) {
+    throw new Error(`Error fetching one book: ${error.message}`);
+  }
+}
+
+// Function to get all books from users
+export async function getAllBooks(title, author, token) {
+  try {
+    const params = {}
+    if (title) params.title = title;
+    if (author) params.author = author;
+    const response = await axiosInstance.post('/user_inventory/search', params, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error(`Request was unsuccessful. Status code: ${response.status}`);
+    }
+    
   } catch (error) {
     throw new Error(`Error fetching all books: ${error.message}`);
   }
@@ -58,11 +91,20 @@ export async function removeBookForUser(token, bookId) {
 }
 
 // Function to update book details for the logged-in user
-export async function updateBook(bookId, updatedBookData) {
+export async function updateBook(bookId, updatedBookData, token) {
   try {
-    const response = await axiosInstance.put(`/books/${bookId}`, updatedBookData);
-    return response.data;
+      const response = await axiosInstance.put(`/books/${bookId}`, updatedBookData, {
+          headers: {
+              Authorization: `Bearer ${token}`,
+          }
+      });
+      if (response.status !== 201) {
+          throw new Error('Failed to update book');
+      }
+      return response.data;
   } catch (error) {
-    throw new Error(`Error updating book: ${error.message}`);
+      throw new Error(`Error updating book: ${error.message}`);
   }
 }
+
+
