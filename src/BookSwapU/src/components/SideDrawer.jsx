@@ -20,7 +20,7 @@ const SideDrawer = () => {
    const [search, setSearch] = useState("")
    const [searchResult, setSearchResult] = useState([])
    const [loading, setLoading] = useState(false)
-   const [loadingChat, setLoadingChat] = useState()
+   const [loadingChat, setLoadingChat] = useState(false)
 
    const { user, setSelectedChat, chats, setChats} = ChatState()
 
@@ -90,6 +90,7 @@ const SideDrawer = () => {
             setSelectedChat(data)
             setLoadingChat(false)
             onClose()
+            console.log(chats)
       } catch (error) {
          toast({
             title: "Error fetching messages",
@@ -154,7 +155,7 @@ const SideDrawer = () => {
                      <UserListItem
                         key={user._id}
                         user={user}
-                        handleFunctions={()=>accessChat(user._id)}
+                        handleFunction={()=>accessChat(user._id)}
                      />
                   ))
                )}

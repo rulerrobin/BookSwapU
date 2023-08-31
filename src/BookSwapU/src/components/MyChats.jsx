@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ChatState } from '../Context/ChatProvider'
 import axios from 'axios'
 import { useToast } from '@chakra-ui/react'
@@ -31,6 +31,11 @@ const MyChats = () => {
        })
       }
     }
+
+    useEffect(() => {
+      setLoggedUser(JSON.parse(localStorage.getItem("userInfo")))
+      fetchChats()
+    }, [])
 
   return (
     <div>MyChats</div>
