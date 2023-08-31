@@ -87,7 +87,9 @@ const MyChats = () => {
               >
                 
                 <Text>
-                    {chat.chatName = getSender(loggedUser, chat.users)}     
+                  {console.log(loggedUser)} 
+                  {chat.chatName = getSender(loggedUser, chat.users)}    
+                    
                 </Text>
               </Box>
             ))}
