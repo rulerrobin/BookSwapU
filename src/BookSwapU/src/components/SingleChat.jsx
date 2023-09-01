@@ -209,11 +209,7 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
 
                <FormControl onKeyDown={sendMessage} isRequired marginTop={3}>
                   {isTyping ? <div>
-                     <Lottie 
-                        options={defaultOptions}
-                        width={70}
-                        style={{ marginBottom: 15, marginLeft: 0 }}
-                     />
+                     Typing...
                   </div> : <></>}
                   
                   <Input 
