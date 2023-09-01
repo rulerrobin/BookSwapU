@@ -3,7 +3,7 @@ import { ChatState } from '../Context/ChatProvider'
 import axios from 'axios'
 import { Box, Button, Stack, Text, useToast } from '@chakra-ui/react'
 import ChatLoading from './ChatLoading'
-import getSender from './ChatLogic'
+import { getSender } from './ChatLogic.jsx'
 
 
 const MyChats = ({ fetchAgain }) => {

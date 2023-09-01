@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { ChatState } from '../Context/ChatProvider'
 import { Box, FormControl, IconButton, Input, Spinner, Text, useToast } from '@chakra-ui/react'
 import { ArrowBackIcon } from '@chakra-ui/icons'
-import getSender from './ChatLogic'
+import { getSender } from './ChatLogic'
 import axios from 'axios'
+import ScrollableChat from './ScrollableChat'
 
 const SingleChat = ({fetchAgain, setfetchAgain}) => {
    const { user, chat, selectedChat, setSelectedChat} = ChatState()
@@ -30,7 +31,7 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
             config
          ) 
 
-         console.log("message:",  messages, '/n chatID', selectedChat._id)
+         // console.log("message:",  messages, '/n chatID', selectedChat._id)
          // console.log("Retrieved from ChatId:", data ,selectedChat._id)
          setMessages(data)
          setLoading(false)
@@ -50,7 +51,9 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
 
    useEffect(() => {
       fetchMessages()
-   }, [selectedChat])
+      
+   }, [selectedChat], console.log("message:",  messages))
+   
 
    const sendMessage = async (event) => {
       if(event.key==="Enter" && newMessage) {
@@ -73,7 +76,6 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
 
          console.log(data)
 
-         
          setMessages([...messages, data])
          } catch (error) {
             toast({
@@ -133,7 +135,14 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
                      margin="auto"
                   />
                ) : (
-                  <div>{/* Messages */}</div>
+                  <div 
+                     display="flex"
+                     flex-direction="column"
+                     overflow-y="scroll"
+                     scrollbar-width="none"
+                  >
+                        <ScrollableChat messages={messages} />
+                  </div>
                )}
 
                <FormControl onKeyDown={sendMessage} isRequired marginTop={3}>
