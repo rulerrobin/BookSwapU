@@ -2,17 +2,31 @@ import { Container, Box, Text, Tab, TabList, TabPanel, TabPanels, Tabs } from '@
 import React from 'react'
 import Login from '../components/Authentication/Login'
 import Register from '../components/Authentication/Register'
+import { useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 
 const LoginRegister = () => {
+   const navigate = useNavigate()
+
+   useEffect(() => {
+      const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+
+      // If userInfo missing redirect user to login page
+      if(userInfo) {
+         navigate('/search')
+      }
+   }, [navigate])
+
+
   return (
    <Container maxW='xl' centerContent>
       <Box  
-        d='flex'
+        display='flex'
         justifyContent='center'
-        p={3}
-        bg={'white'}
+        padding={3}
+        background={'white'}
         width="100%"
-        m="40px 0 15px 0"
+        margin="40px 0 15px 0"
         borderRadius='lg'
         borderWidth='1px'
       >   
@@ -22,15 +36,15 @@ const LoginRegister = () => {
          >BookSwapU</Text>
       </Box>
       <Box
-      bg="white"
-      w="100%"
-      p={4}
+      background="white"
+      width="100%"
+      padding={4}
       borderRadius="lg"
       borderWidth="1px"
       color="black"
       >
       <Tabs variant='soft-rounded'>
-         <TabList mb='1em'>
+         <TabList marginbottom='1em'>
             <Tab width ='50%'>Login</Tab>
             <Tab width ='50%'>Register</Tab>
          </TabList>

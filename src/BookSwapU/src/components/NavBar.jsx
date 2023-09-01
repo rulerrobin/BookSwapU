@@ -1,7 +1,23 @@
 import React from 'react'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { Avatar, Button, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react'
+import { ChevronDownIcon } from '@chakra-ui/icons'
+import { ChatState } from '../Context/ChatProvider'
+
+
+
+
 
 const NavBar = () => {
+  const { user } = ChatState() // to use for user initials in avatar 
+
+  const navigate = useNavigate()
+
+  const logoutHandler = () => {
+    localStorage.removeItem("userInfo")
+    navigate('/login')
+  }
+
   return (
     <nav className="navbar navbar-expand-lg bg-primary-subtle">
       <div className="container-fluid">
@@ -22,10 +38,21 @@ const NavBar = () => {
             <Link className="nav-link" to="/messages">
               Messages
             </Link>
-            <Link className="nav-link" to="/profile">
-              Profile
-            </Link>
+ 
+            <Menu>
+              <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                <Avatar 
+                size="sm"
+                cursor="pointer" 
+                />
+              </MenuButton>
+              <MenuList>
+                <MenuItem><Link to="/profile">Profile</Link></MenuItem>
+                <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+              </MenuList>
+            </Menu>
           </div>
+
         </div>
       </div>
     </nav>

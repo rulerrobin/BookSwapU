@@ -3,14 +3,26 @@
 
 #root {
   min-height: 100vh;
-  display: flex;
+  /* display: flex; */
 
   /* background to be filled in later */
-  background-image: url("../assets/wp3269174-grey-wallpapers.jpg");
-  background-size: cover;
+  /* background-image: url("../assets/wp3269174-grey-wallpapers.jpg"); */
+  /* background-size: cover; */
 
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  /* padding: 2rem; */
+  /* text-align: center; */
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.281);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555;
 }
