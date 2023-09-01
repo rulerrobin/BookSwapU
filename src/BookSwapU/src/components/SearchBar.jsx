@@ -17,36 +17,39 @@ const SearchBar = ({ onSearch, showAllButton = true }) => {
     onSearch(searchTitle, searchAuthor)
   }
 
-  return (
-    <div>
-      <div>
+return (
+  <div>
+    <div className="mb-3">
       <input
         type="text"
+        className="form-control"
         placeholder="Search by Title"
         value={searchTitle}
         onChange={(e) => setSearchTitle(e.target.value)}
       />
-      </div>
-      <div>
+    </div>
+    
+    <div className="mb-3">
       <input
         type="text"
+        className="form-control"
         placeholder="Search by Author"
         value={searchAuthor}
         onChange={(e) => setSearchAuthor(e.target.value)}
       />
-      </div>
-      <div>
-      <button className="btn btn-primary mt-3" onClick={handleSearch}>
+    </div>
+    
+    <div>
+      <button className="btn btn-primary me-2" onClick={handleSearch}>
         Search
       </button>
-      </div>
-      <div>
-      {showAllButton && <button className="btn btn-secondary mt-3" onClick={() => onSearch('', '')}>
-                Show All
-            </button>}
-            </div>
+      
+      {showAllButton && <button className="btn btn-secondary" onClick={() => onSearch('', '')}>
+        Show All
+      </button>}
     </div>
-  )
+  </div>
+);
 }
 
-export default SearchBar
+export default SearchBar;
