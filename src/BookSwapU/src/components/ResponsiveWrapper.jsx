@@ -1,13 +1,14 @@
 import React from 'react'
+import Footer from "./Footer"
 
 const ResponsiveWrapper = ({ children }) => {
   return (
-    <div>
-      <div className="container-sm container-md container-lg container-xl container-xxl"></div>
-      <div className="d-flex p-2 d-flex justify-content-center"></div>
+    <div className="pageWrapper">
       {children}
+      <Footer />
     </div>
-  )
+  );
 }
+
 
 export default ResponsiveWrapper

@@ -10,6 +10,7 @@ import LoginRegister from "./LoginRegister"
 import { addBookForUser, removeBookForUser, updateBook } from './api'
 import SearchAllBooks from "./SearchAllBooks"
 import UpdateEntryWrapper from "./UpdateEntryWrapper"
+import ResponsiveWrapper from "./ResponsiveWrapper"
 
 function App() {
   const nav = useNavigate()
@@ -86,14 +87,15 @@ async function removeEntry(token, entry) {
     <>
     {shouldRenderNavBar &&<NavBar />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<ResponsiveWrapper><Home /></ResponsiveWrapper>} />
         <Route path="/login" element={<LoginRegister />} />
-        <Route path="/search" element={<SearchAllBooks />} />
+        <Route path="/search" element={<ResponsiveWrapper><SearchAllBooks /></ResponsiveWrapper>} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/profile" element={<Profile />} />
         <Route
           path="/usersbooks"
           element={
+            <ResponsiveWrapper>
             <UsersBooks
               token={userToken}
               addEntry={addEntry}
@@ -101,6 +103,7 @@ async function removeEntry(token, entry) {
               updateEntry={updateEntry}
               navigate={nav}
             />
+            </ResponsiveWrapper>
           }
         />
         <Route path="/newentry" element={<NewEntry addEntry={addEntry} />} />
