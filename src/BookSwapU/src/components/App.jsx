@@ -10,7 +10,7 @@ import NewEntry from "./NewEntry"
 import NavBar from "./NavBar"
 import AddEditBook from "./AddEditBook"
 import LoginRegister from "./LoginRegister"
-import "./App.css"
+// import "./App.css"
 
 const seedEntries = [
   { title: "Book 1", author: "Author 1", condition: "New", user: "John", status: "Approved", edition: "4", year: "2003" },

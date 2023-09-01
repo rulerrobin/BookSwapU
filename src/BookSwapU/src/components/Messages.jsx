@@ -9,6 +9,7 @@ import { Box } from '@chakra-ui/react'
 
 const Messages = () => {
   const { user } = ChatState()
+  const [fetchAgain, setfetchAgain] = useState()
 
   return (
     <div style ={{ width: "100%" }}>
@@ -20,8 +21,10 @@ const Messages = () => {
         height='91.5vh'
         padding='10px'
       >
-        { user && <MyChats />}
-        { user && <ChatBox />}
+        { user && (<MyChats fetchAgain={fetchAgain} />
+        )}
+        { user && (<ChatBox fetchAgain={fetchAgain} setfetchAgain={setfetchAgain} />
+        )}
       </Box>
     </div>
   )

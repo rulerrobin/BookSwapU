@@ -6,7 +6,7 @@ import ChatLoading from './ChatLoading'
 import getSender from './ChatLogic'
 
 
-const MyChats = () => {
+const MyChats = ({ fetchAgain }) => {
   const [ loggedUser, setLoggedUser ] = useState()
   const {  selectedChat, setSelectedChat, user, chats, setChats } = ChatState()
 
@@ -21,7 +21,7 @@ const MyChats = () => {
         }
 
         const { data } = await axios.get('http://localhost:5000/api/chat', config)
-        console.log(data)
+        // console.log(data)
         setChats(data)
       } catch (error) {
         toast({
@@ -38,11 +38,11 @@ const MyChats = () => {
     useEffect(() => {
       setLoggedUser(JSON.parse(localStorage.getItem("userInfo")))
       fetchChats()
-    }, [])
+    }, [fetchAgain])
 
   return (
     <Box
-      display={{ base:selectedChat ? "none" : "flex", md: "flex" }}
+      display={{ base: selectedChat ? "none" : "flex", md: "flex" }}
       flexDir="column"
       alignItems="center"
       p={3}
@@ -87,7 +87,7 @@ const MyChats = () => {
               >
                 
                 <Text>
-                  {console.log(loggedUser)} 
+                  {/* {console.log(loggedUser)}  */}
                   {chat.chatName = getSender(loggedUser, chat.users)}    
                     
                 </Text>
