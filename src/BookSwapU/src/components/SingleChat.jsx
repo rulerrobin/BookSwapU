@@ -9,12 +9,15 @@ import io from "socket.io-client"
 import Lottie from "lottie-react"
 import animationData from "../animation/typing.json"
 
-
+// Define the endpoint for the socket.io server
 const ENDPOINT = "http://localhost:5000"
 var socket, selectedChatCompare
 
 const SingleChat = ({fetchAgain, setfetchAgain}) => {
+   // Get state from the ChatProvider
    const { user, chat, selectedChat, setSelectedChat} = ChatState()
+
+   // Define component state variables
    const [messages, setMessages] = useState([])
    const [loading, setLoading] = useState(false)
    const [ newMessage, setNewMessage] = useState()
@@ -22,8 +25,10 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
    const [typing, setTyping] = useState(false)
    const [isTyping, setIsTyping] = useState(false)
 
+   // Initialize the toast notification system
    const toast = useToast()
   
+   // Lottie animation options
    const defaultOptions = {
       loop: true,
       autoplay: true,
@@ -33,6 +38,7 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
       }
    }
 
+   // Function to fetch messages for the selected chat
    const fetchMessages = async() => {
       if(!selectedChat) return
 
@@ -55,6 +61,7 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
          setMessages(data)
          setLoading(false)
 
+         // Emit a 'join chat' event to the socket.io server
          socket.emit('join chat', selectedChat._id)
           
 
@@ -70,6 +77,7 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
       }
    }
 
+   // Initialize the socket.io connection and set up event listeners
    useEffect(() => {
       socket = io(ENDPOINT)
       socket.emit("setup", user)
@@ -78,13 +86,14 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
       socket.on("stop typing", ()=> setIsTyping(false))
    }, [])
 
+   // Fetch messages when the selected chat changes
    useEffect(() => {
       fetchMessages()
       
       selectedChatCompare = selectedChat
    }, [selectedChat],)
 
-
+   // Function to send a new message
    const sendMessage = async (event) => {
       if(event.key==="Enter" && newMessage) {
          socket.emit("stop Typing", selectedChat._id)
@@ -124,17 +133,18 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
    }
 
 
-
+   // Listen for incoming messages from the socket.io server
    useEffect(() => {
       socket.on("message recieved", (newMessageReceived) => {
          if (!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chat._id){
-            // Give Notification
+            // Give Notification (Current under development)
          } else {
             setMessages([...messages, newMessageReceived])
          }
       })
    })
    
+   // Function to handle typing indicator and emit typing events
    const typinghandler = (e) => {
       setNewMessage(e.target.value)
 
