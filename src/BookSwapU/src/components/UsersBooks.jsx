@@ -115,4 +115,3 @@ const handleRemove = async (entry) => {
 };
 
 export default UsersBooks
-

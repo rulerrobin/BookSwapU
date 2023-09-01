@@ -45,7 +45,7 @@ const SearchAllBooks = () => {
             <p>User: {result.user.username}</p>
             <p>Status: {result.book.status}</p>
             <p>Edition: {result.book.edition}</p>
-            <p>Year: {result.book.year}</p>
+            <p>Year: {result.year}</p>
           </li>
         ))}
       </ul>
