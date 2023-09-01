@@ -109,4 +109,22 @@ export async function updateBook(bookId, updatedBookData, token) {
   }
 }
 
+// Update the currently logged-in user's details
+export async function updateCurrentUserDetails(token, userData) {
+  try {
+    const response = await axiosInstance.put('/user', userData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.status === 201) {
+      return response.data;
+    } else {
+      throw new Error("Failed to update user details");
+    }
+  } catch (error) {
+    throw new Error(`Error updating user details: ${error.message}`);
+  }
+}
 
