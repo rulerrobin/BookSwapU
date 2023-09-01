@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { addBookForUser } from './api';
 
 const NewEntry = () => {
+  // Using navigate to programmatically change routes
   const navigate = useNavigate();
+
+  // State variables for holding form input values
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [condition, setCondition] = useState('');
@@ -11,12 +14,19 @@ const NewEntry = () => {
   const [edition, setEdition] = useState('');
   const [year, setYear] = useState('');
 
+  // Function to handle the form submission
   const submit = async (e) => {
     e.preventDefault();
 
     try {
       const token = JSON.parse(localStorage.getItem("userInfo")).token;
 
+      // Check if token exists
+      if (!token) {
+        throw new Error("User not authenticated");
+      }
+
+      // Constructing the book data object from state values
       const newBookData = {
         title,
         author,
@@ -26,6 +36,7 @@ const NewEntry = () => {
         year,
       };
 
+      // Making an API call to add the book for the user
       await addBookForUser(token, newBookData);
 
       // Clear form fields

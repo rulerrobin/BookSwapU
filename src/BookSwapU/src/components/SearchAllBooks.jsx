@@ -3,8 +3,10 @@ import SearchBar from './SearchBar'
 import { getAllBooks } from './api'
 
 const SearchAllBooks = () => {
+  // State variable to store search results
   const [searchResults, setSearchResults] = useState([])
 
+  // Function to handle the search process
   const handleSearch = async (title, author) => {
     try {
       setSearchResults([]) // Clear previous results
@@ -17,14 +19,13 @@ const SearchAllBooks = () => {
       
       const userInfo = JSON.parse(userInfoStr); 
 
+      // Validate the token from the user info
       if (!userInfo.token) {
           throw new Error("User token is not available");
       }
 
-      console.log(title, author)
-
+      // Get all books matching the search criteria
       const allBooksResults = await getAllBooks(title, author, userInfo.token);
-      console.log('Search results in SearchAllBooks:', allBooksResults);
       setSearchResults(allBooksResults);
     } catch (error) {
       console.error('Error searching books:', error);

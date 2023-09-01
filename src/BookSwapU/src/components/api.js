@@ -30,11 +30,13 @@ export async function getOneBook(bookId, token) {
   }
 }
 
-// Function to get all books from users
+// Search for books from all users using title or/and author as filters
 export async function getAllBooks(title, author, token) {
   try {
     const params = {}
+    // If a title is provided, add it to the request parameters
     if (title) params.title = title;
+    // If an author is provided, add it to the request parameters
     if (author) params.author = author;
     const response = await axiosInstance.post('/user_inventory/search', params, {
       headers: {
@@ -53,7 +55,7 @@ export async function getAllBooks(title, author, token) {
   }
 }
 
-// Function to add a new book for the logged-in user
+// Add a new book entry for the logged-in user
 export async function addBookForUser(token, bookData) {
     try {
       const response = await axiosInstance.post("/books", bookData, {
@@ -73,7 +75,7 @@ export async function addBookForUser(token, bookData) {
     }
   }
 
-// Function to remove a book for the logged-in user
+// Delete a specific book for the logged-in user using its ID
 export async function removeBookForUser(token, bookId) {
   console.log("Attempting to remove book with ID:", bookId);
   try {
@@ -90,7 +92,7 @@ export async function removeBookForUser(token, bookId) {
   }
 }
 
-// Function to update book details for the logged-in user
+// Update details of a specific book for the logged-in user
 export async function updateBook(bookId, updatedBookData, token) {
   try {
       const response = await axiosInstance.put(`/books/${bookId}`, updatedBookData, {
