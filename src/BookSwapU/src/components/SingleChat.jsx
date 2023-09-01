@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ChatState } from '../Context/ChatProvider'
-import { Box, IconButton, Text } from '@chakra-ui/react'
+import { Box, IconButton, Spinner, Text } from '@chakra-ui/react'
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import getSender from './ChatLogic'
 
 const SingleChat = ({fetchAgain, setfetchAgain}) => {
    const { user, chat, selectedChat, setSelectedChat} = ChatState()
+   const [messages, setMessages] = useState([])
+   const [loading, setLoading] = useState(false)
+   const [ newMessage, setNewMessage] = useState()
   
   
    return <>
@@ -38,7 +41,13 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
                borderRadius="lg"
                overflowY="hidden"
             >
-               {/* Messages here */}
+               {loading ? (
+                  <Spinner 
+                  
+                  />
+               ) : (
+                  <></>
+               )}
             </Box>
          </>
       ) : (
