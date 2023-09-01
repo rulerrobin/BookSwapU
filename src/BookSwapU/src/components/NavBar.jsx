@@ -8,6 +8,7 @@ import { ChatState } from '../Context/ChatProvider'
 
 
 
+// Define the NavBar functional component
 const NavBar = () => {
   const { user } = ChatState() // to use for user initials in avatar 
 
@@ -21,6 +22,7 @@ const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-primary-subtle">
       <div className="container-fluid">
+        {/* Link to the page */}
         <Link className="navbar-brand" to="/">
           BookSwapU
         </Link>
@@ -29,15 +31,19 @@ const NavBar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
+            {/* Link to the page */}
             <Link className="nav-link active" aria-current="page" to="/search">
               Search
             </Link>
+            {/* Link to the page */}
             <Link className="nav-link" to="/usersbooks">
               My Books
             </Link>
+            {/* Link to the page */}
             <Link className="nav-link" to="/messages">
               Messages
             </Link>
+
  
             <Menu>
               <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>

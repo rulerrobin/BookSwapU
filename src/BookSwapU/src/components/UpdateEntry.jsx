@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const UpdateEntry = ({ entry, updateEntry }) => {
+   // Hook to programmatically navigate to different routes
   const navigate = useNavigate()
 
+  // Local state for form input fields, initialized with values from the `entry` prop or default empty strings
   const [title, setTitle] = useState(entry?.title || '')
   const [author, setAuthor] = useState(entry?.author || '')
   const [condition, setCondition] = useState(entry?.condition || '')
@@ -12,6 +14,7 @@ const UpdateEntry = ({ entry, updateEntry }) => {
   const [edition, setEdition] = useState(entry?.edition || '')
   const [year, setYear] = useState(entry?.year || '')
 
+  // useEffect to update local state when the `entry` prop changes
   useEffect(() => {
     setTitle(entry?.title || '')
     setAuthor(entry?.author || '')
@@ -21,10 +24,9 @@ const UpdateEntry = ({ entry, updateEntry }) => {
     setYear(entry?.year || '')
   }, [entry])
 
-  console.log(entry)
-
   const handleSubmit = (e) => {
     e.preventDefault()
+      // Constructing the updated entry information from the local state
       const updatedInfo = {
           title,
           author,
@@ -33,8 +35,9 @@ const UpdateEntry = ({ entry, updateEntry }) => {
           status,
           year,
     }
-    console.log("Updated Info:", updatedInfo);
+    // Invoking the passed-in `updateEntry` function to handle the update
     updateEntry(updatedInfo)
+    // Navigating to the '/usersbooks' route after the update
     navigate('/usersbooks')
   }
 

@@ -3,54 +3,62 @@ import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { getUserBooks } from "./api";
 
+// UsersBooks Component: Responsible for displaying and managing the user's books
 const UsersBooks = ({ token,
-  // entries,
+  
+  // Local state for the filtered entries based on search and all the entries.
   removeEntry, navigate }) => {
   const [filteredEntries, setFilteredEntries] = useState([]);
   const [allEntries, setAllEntries] = useState([]);
 
-  console.log("filteredentries", filteredEntries)
-
+  // useEffect to fetch the user's books on component mount.
   useEffect(() => {
-    // This function fetches the books for the logged-in user
+    // Asynchronous function to fetch user's books
     const fetchUserBooks = async () => {
       try {
-        const userBooks = await getUserBooks();// No filters since we're getting all books
-        setAllEntries(userBooks);
-        setFilteredEntries(userBooks) // Populate filteredEntries with all user books
+        // Fetch the books without any filters to get all entries.
+        const userBooks = await getUserBooks();
+        setAllEntries(userBooks); // Set the fetched books in state
+        setFilteredEntries(userBooks) // Initially, all entries are considered as "filtered".
       } catch (error) {
         console.error("Error fetching user books:", error);
       }
     };
-
+    // Invoke the fetch function.
     fetchUserBooks();
-  }, [])
-  
+  }, []) // Empty dependency array indicates this effect runs once on mount.
+
+  // Handle search based on title and author.
 const handleSearch = (searchTitle, searchAuthor) => {
+  // If no search criteria, reset filtered entries to all.
   if (!searchTitle && !searchAuthor) {
       setFilteredEntries(allEntries);
       return;
   }
 
+  // Filter entries based on search criteria.
   const results = allEntries.filter(entry => { 
       const titleMatch = searchTitle ? entry.title.toLowerCase().includes(searchTitle.toLowerCase()) : true;
       const authorMatch = searchAuthor ? entry.author.toLowerCase().includes(searchAuthor.toLowerCase()) : true;
       return titleMatch && authorMatch;
   });
 
+  // Update the filtered entries state.
   setFilteredEntries(results);
 };
 
+// Handle removal of an entry.
 const handleRemove = async (entry) => {
   const isRemoved = await removeEntry(token, entry);
 
+  // If successfully removed, update the state by removing the entry.
   if (isRemoved) {
   const updatedAllEntries = allEntries.filter(e => e._id !== entry._id);
     setAllEntries(updatedAllEntries);
     setFilteredEntries(updatedAllEntries);
 }
 }
-  
+  // Render component.
   return (
     <>
       <h2>My Books</h2>

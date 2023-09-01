@@ -1,5 +1,12 @@
 import React from 'react'
 
+/**
+ * ShowEntry component: A presentational component that displays details about a specific book entry.
+ * 
+ * Props:
+ * - entry: An object containing details about a book and its associated user.
+ */
+
 function ShowEntry({ entry }) {
   return (
     <div>
