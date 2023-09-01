@@ -107,7 +107,7 @@ const Register = () => {
                }
             }
             // Send a registration request to the server
-            const { data } = await axios.post('http://localhost:3000/api/user', 
+            const { data } = await axios.post('http://localhost:3000/user/register', 
             { username, email, password },
             config
             )
