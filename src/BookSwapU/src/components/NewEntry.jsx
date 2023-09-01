@@ -1,37 +1,48 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { addBookForUser } from './api';
 
-const NewEntry = ({ addEntry }) => {
-    const navigate = useNavigate()
-    const [title, setTitle] = useState('')
-    const [author, setAuthor] = useState('')
-    const [condition, setCondition] = useState('')
-    const [user, setUser] = useState('')
-    const [status, setStatus] = useState('')
-    const [edition, setEdition] = useState('')
-    const [year, setYear] = useState('')
+const NewEntry = () => {
+  const navigate = useNavigate();
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [condition, setCondition] = useState('');
+  const [status, setStatus] = useState('');
+  const [edition, setEdition] = useState('');
+  const [year, setYear] = useState('');
 
-    const submit = (e) => {
-        e.preventDefault()
-        addEntry (
-            title,
-            author,
-            condition,
-            user,
-            status,
-            edition,
-            year,
-        )
-        setTitle('')
-        setAuthor('')
-        setCondition('')
-        setUser('')
-        setStatus('')
-        setEdition('')
-        setYear('')
+  const submit = async (e) => {
+    e.preventDefault();
 
-        navigate('/usersbooks')
+    try {
+      const token = JSON.parse(localStorage.getItem("userInfo")).token;
+
+      const newBookData = {
+        title,
+        author,
+        condition,
+        status,
+        edition,
+        year,
+      };
+
+      await addBookForUser(token, newBookData);
+
+      // Clear form fields
+      setTitle('');
+      setAuthor('');
+      setCondition('');
+      setStatus('');
+      setEdition('');
+      setYear('');
+
+      // Navigate to the user's books page
+      navigate('/usersbooks');
+    } catch (error) {
+      console.error('Error adding book:', error);
     }
+  };
+
 
     return (
         <>
@@ -59,14 +70,6 @@ const NewEntry = ({ addEntry }) => {
             placeholder="Condition"
             value={condition}
             onChange={(e) => setCondition(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="User"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
           />
         </div>
         <div>
