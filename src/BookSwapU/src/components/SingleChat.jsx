@@ -5,12 +5,18 @@ import { ArrowBackIcon } from '@chakra-ui/icons'
 import { getSender } from './ChatLogic'
 import axios from 'axios'
 import ScrollableChat from './ScrollableChat'
+import io from "socket.io-client"
+
+
+const ENDPOINT = "http://localhost:5000"
+var socket, selectedChatCompare
 
 const SingleChat = ({fetchAgain, setfetchAgain}) => {
    const { user, chat, selectedChat, setSelectedChat} = ChatState()
    const [messages, setMessages] = useState([])
    const [loading, setLoading] = useState(false)
    const [ newMessage, setNewMessage] = useState()
+   const [socketConnected, setSocketConnected] = useState(false)
 
    const toast = useToast()
   
@@ -35,6 +41,8 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
          // console.log("Retrieved from ChatId:", data ,selectedChat._id)
          setMessages(data)
          setLoading(false)
+
+         socket.emit('join chat', selectedChat._id)
           
 
       } catch (error) {
@@ -50,10 +58,17 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
    }
 
    useEffect(() => {
+      socket = io(ENDPOINT)
+      socket.emit("setup", user)
+      socket.on("connection", () => setSocketConnected(true))
+   }, [])
+
+   useEffect(() => {
       fetchMessages()
       
-   }, [selectedChat], console.log("message:",  messages))
-   
+      selectedChatCompare = selectedChat
+   }, [selectedChat],)
+
 
    const sendMessage = async (event) => {
       if(event.key==="Enter" && newMessage) {
@@ -72,10 +87,11 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
             },
             config
          )
-         console.log("sent to chat ID:", selectedChat._id),
+         // console.log("sent to chat ID:", selectedChat._id),
 
          console.log(data)
 
+         socket.emit('new message', data)
          setMessages([...messages, data])
          } catch (error) {
             toast({
@@ -90,6 +106,19 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
          }
       }
    }
+
+
+
+   useEffect(() => {
+      socket.on("message recieved", (newMessageReceived) => {
+         if (!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chat._id){
+            // Give Notification
+         } else {
+            setMessages([...messages, newMessageReceived])
+         }
+      })
+   })
+   
    const typinghandler = (e) => {
       setNewMessage(e.target.value)
 
