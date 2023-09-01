@@ -87,7 +87,7 @@ const MyChats = ({ fetchAgain }) => {
               >
                 
                 <Text>
-                  {/* {console.log(loggedUser)}  */}
+                  {/* console.log(users[1]) */}
                   {chat.chatName = getSender(loggedUser, chat.users)}    
                     
                 </Text>
