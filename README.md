@@ -229,3 +229,250 @@ https://trello.com/b/EmuuACLM/bookswapu
 ![Checklist-4](docs/checklist-4.png)
 ***<p align="center">Checklist for the Messaging Feature View</p>***
 
+## Tracking Progress
+
+Below are a series of screenshots of our Trello board taken at the end of each day together with a description of work done. This serves as a standup.
+
+## Day 1 - Mon 21/8/23
+
+The was no visible movement on the Trello board on Day 1. Our team spent this day in discussions concerning the following issues.
+
+Explored whether we should set up git upstream so our remote branches could be synchronized with our local branches. We ran into difficulties with this approach. Being mindful of time, and the urgency to commence development, we settled on a branching strategy instead. We would create local branches for each backend and frontend feature, then push our changes to corresponding remote branches. Genuel was appointed to merge these branches into main. Phillip posted the branching strategy in Trello.
+
+We agreed on the following work distribution based on our strengths and preferences:
+
+Martin would develop most of the frontend using the wireframes and architecture diagrams as input.
+
+Phillip would develop most of the backend using the wireframes and architecture diagrams as input. Phillip would update the Trello board and also update the README document in this respect.
+
+Genuel would work on the Chat/Messaging featue of this application, which is complex, time consuming and required extra research. He would develop the frontend UI components and backend endpoint logic for this feature. He would also post regular standups in discord.
+
+Work would be carried out concurrently after establishing a clear seperation of concerns.
+
+Decided that collaboration would occur primarily through Discord and Trello.
+
+Martin and Phillip would have regular meetups at the Sydney Support Hub to ensure frontend and backend interface successfully. Genuel was involved in these meetups through our Discord group chat and conference calls.
+
+Discussed preliminary data requirements.
+
+## Day 2 - Tue 22/8/23
+
+**Front End:** Carried out the checklist in the frontend setup card. The following tasks were carried out:
+
+The project repository, project directory structure was established.
+
+A gitignore file was created to specify what project files to exclude from the repository.
+
+The Vite tooling, development environment and server was set up and configured.
+
+All project dependencies were installed and correctly configured.
+
+**Back End:** Carried out the checklist in the corresponding backend setup card. The following tasks were carried out:
+
+Genuel established and took ownership of the backend project repository.
+
+A corresponding .gitignore file was created to specify what project files to exclude from the repository.
+
+The backend directory structure was established in line with Express MVC standards.
+
+All important dependencies were installed like 'dotenv', 'mongoose', 'jest' and 'supertest'.
+
+Phillip created a script to connect to and seed the mongo database. When run the script (seed.js) created collections for users, books, user_inventory and messages.
+
+Genuel spent time researching the socket.io package.
+
+Both cards were promptly moved to the Review column and then the Complete column.
+
+***<p align="left">Figure 7</p>***
+![Trello-Board](docs/Day-2.png)
+***<p align="center">Trello Board at the End of Day 2</p>***
+
+## Day 3 - Wed 23/8/23
+
+Continued research and experimentation with chat functions and socket.io API.
+
+Time was spent working out how to integrate the socket.io package into the frontend and backend.
+
+Work commenced on login and registration both frontend and backend. Since this is a requirement for the chat feature priority was given to it by Phillip and Genuel. Extensive upfront development was carried out by both, with Phillip creating an initial version and Genuel adding support for paswword encryption and web token generation.
+
+Martin commenced work on the navigation, hero and footer bars.
+
+Martin commenced work on the introductory home page, and the login and registration pages.
+
+At the end of Day 3 Task 2 was under review and Task 3 was marked as completed.
+
+***<p align="left">Figure 8</p>***
+![Trello-Board](docs/Day-3.png)
+***<p align="center">Trello Board at the End of Day 3</p>***
+
+## Day 4 - Thu 24/8/23
+
+Finished the UI for login.
+
+Completed an endpoint for updating books.
+
+Finshed UI for login.
+
+Setup models and schemas for user, messages and chat.
+
+Refactored folder structures for front and backends.
+
+Work in progress: Search functions and routes for authentication and chat.
+
+Genuel learned more about props, state, and Chakraui.
+
+At the end of Day 4 Task 2 was marked as complete.
+
+***<p align="left">Figure 8</p>***
+![Trello-Board](docs/Day-4.png)
+***<p align="center">Trello Board at the End of Day 3</p>***
+
+## Day 5 - Fri 25/8/23
+
+Backend user authentication, login and register (Sign Up) complete.
+
+Frontend signup and login functionality are complete.
+
+Created middleware for processing exceptions. This removes the need for try-catch statements. Exceptions from calls to third party libraries and user generated exceptions are handled by the same middleware in conjunction with asynchandher function.
+
+Created middleware to process exceptions generated by incorectly specified URI's (endpoints).
+
+Had an issue with placement of middleware in the main app.js script. The 2 error handlers weren't working. This was resolved by putting it at the end of app.js.
+
+Tasks 4, 6 and 7 have been moved to the review stage.
+
+***<p align="left">Figure 9</p>***
+![Trello-Board](docs/Day-5.png)
+***<p align="center">Trello Board at the End of Day 5</p>***
+
+## Day 6 - Sat 26/8/23
+
+Task 5 Backend Signup has now been moved to Review.
+
+Tasks 9, 12 and 14 have been completed and are now under Review.
+
+Tasks 1, 2, 4, 6 an 7 are complete.
+
+***<p align="left">Figure 10</p>***
+![Trello-Board](docs/Day-6.png)
+***<p align="center">Trello Board at the End of Day 6</p>***
+
+
+## Day 7 - Sun 27/8/23
+
+Tasks 8 and 11 were in progress on this day.
+
+Tasks 3 and 10 were placed under review.
+
+Tasks 5, 9, 12 and 14 were completed successfully.
+
+***<p align="left">Figure 11</p>***
+![Trello-Board](docs/Day-7.png)
+***<p align="center">Trello Board at the End of Day 7</p>***
+
+
+## Day 8 - Mon 28/8/23
+
+Martin completed frontend sign in/register MVP. Changed how searches are processed as json request and response structures have changed. The Sign Up button in home page now links to the register page.
+
+Finished the MVP for chat functionality. Change book update to fetch from the backend. It updates fine now.
+
+Usehistory vs Usenavigate. The lesson here is to always check imports, as this caused us some headaches.
+
+At the end of Day 8 task 11 was under review. Tasks 3 and 10 were completed successfully.
+
+***<p align="left">Figure 12</p>***
+![Trello-Board](docs/Day-8.png)
+***<p align="center">Trello Board at the End of Day 8</p>***
+
+## Day 9 - Tue 29/8/23
+
+Genuel commenced frontend development for Chat. Made basic API routes for retrieving chat and making a chat. 
+
+Phillip created middleware (verifyToken) for drawing the user id out from a web token. This is used to restrict all endpoints to the currently logged in user. 
+
+Removed any superfluous endpoints which existed for debugging purposes. Refined endpoints that were retained for frontend use. Reduced the amount of data in the json returns to only what was actually required for the frontend feature.
+
+Removed all try catch statements so that all error handling is done by middleware for controller functions not already implementing this. Functions now do explicit "throws".
+
+Finished Chat Page UI. Commenced Sending Messages API.
+
+Online documentation tutorials have been especially useful as you can see what functions have been updated/deprecated.
+
+At the end of Day 9 Tasks 13 and 15 were in progress. Task 8 was under review and task 11 was successfully completed.
+
+***<p align="left">Figure 13</p>***
+![Trello-Board](docs/Day-9.png)
+***<p align="center">Trello Board at the End of Day 9</p>***
+
+## Day 10 - Wed 30/8/23
+
+All backend exceptions now handled by middleware.
+
+Password no longer returned in any JSON response. 
+
+Setup a base URL for routers. Set up user search ui for chat, and set up a basic chat page.
+
+Merging conflicts. using regex in mongodb for than just the first string
+
+Although unit tests were been written in lockstep with the devlopment of most routes, we started heavy refactoring of these tests as they weren't running independently of the data inserted by the seeb.js script.
+
+Considering moving the base URI to .env file.
+
+Chat rendering and chat sending message APIdocumentation has proven to be essential.
+
+At the end of Day 10 Tasks 17, 20 and 21 are in progress. Tasks 13, 15 and 16 are under review, and Task 8 has been successfully completed.
+
+***<p align="left">Figure 14</p>***
+![Trello-Board](docs/Day-10.png)
+***<p align="center">Trello Board at the End of Day 10</p>***
+
+## Day 11 - Thu 31/8/23
+
+Wrote additional unit tests and assertions as some new senarios occured to us upon reflection.
+
+All functions on the frontend are connecting to the backend and working well.
+
+Some tests are failing due to timeouts. Had to increase the timeouts for tests involving POST routes with db inserts that took longer than the default 5 seconds.
+
+Added additional error handling added on the frontend. Did some refactoring work.
+
+Moved on with home page images and profile page.
+
+Completed the massage UI and the messaging websocket API.
+
+Many small details created bugs that were hard to trace. Lots of moving parts and moving back and forth between frontend and backend can be quite tiring.
+
+At the end of Day 12 Tasks 20 and 23 were in progress. Tasks 17 and 21 were under review, and Tasks 13, 15 and 16 were successfully completed.
+
+***<p align="left">Figure 15</p>***
+![Trello-Board](docs/Day-11.png)
+***<p align="center">Trello Board at the End of Day 11</p>***
+
+
+## Day 12 - Fri 1/9/23
+
+Through my unit testing I discovered that update profile PUT route wasn't saving new passwords in encrypted form. Fixed this error in userController.js. The pre save hook wasn’t running when updating users, so passwords were being saved as plaintext. This was fixed. 
+
+Finished UI for messaging and also completed realtime messaging
+
+Burned out from the amount of work completed, unsure if all requried unit tests can be completed.
+
+Further testing and system deployment are still requried.
+
+An option extra would be to implememt notifications for messaging. This would most likely require extra time.
+
+At the end of Day 11 Tasks 22, 23 and 24 are in progress. tasks 18, 19 and 20 arfe under review. Tasks 17 and 21 have been sucessfully completed.
+
+***<p align="left">Figure 16</p>***
+![Trello-Board](docs/Day-12.png)
+***<p align="center">Trello Board at the End of Day 12</p>***
+
+## Day 13 - Sat 2/9/23
+
+Spent most of the day updating the README documentation.
+
+Experiencing major problems with deployment.
+
+## Day 14 - 3/9/23
+
