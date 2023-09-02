@@ -1,9 +1,11 @@
 import { Avatar } from "@chakra-ui/avatar"
 import { Box, Text } from "@chakra-ui/layout"
+import React from "react"
 
 
 const UserListItem = ({ user, handleFunction }) => {
   return (
+    // Container for each user item
     <Box
       onClick={handleFunction}
       cursor="pointer"
