@@ -10,7 +10,7 @@ import Lottie from "lottie-react"
 import animationData from "../animation/typing.json"
 
 // Define the endpoint for the socket.io server
-const ENDPOINT = "http://localhost:5000"
+const ENDPOINT = "https://bookswapu-api.onrender.com"
 var socket, selectedChatCompare
 
 const SingleChat = ({fetchAgain, setfetchAgain}) => {
