@@ -231,12 +231,177 @@ https://trello.com/b/EmuuACLM/bookswapu
 
 ## Tracking Progress
 
-Below are a series of screenshots of my Trello board taken at the end of each day which serves as a standup.
+Below are a series of screenshots of our Trello board taken at the end of each day together with a description of work done. This serves as a standup.
 
-## Day 1
+## Day 1 - 21/8/23
 
-## Day 2
+The was no visible movement on the Trello board on Day 1. Our team spent this day in discussions concerning the following issues.
+
+Explored whether we should set up git upstream so our remote branches could be synchronized with our local branches. We ran into difficulties with this approach. Being mindful of time, and the urgency to commence development, we settled on a branching strategy instead. We would create local branches for each backend and frontend feature, then push our changes to corresponding remote branches. Genuel was appointed to merge these branches into main. Phillip posted the branching strategy in Trello.
+
+We agreded on the following work distribution based on our strengths and preferences:
+
+Martin would develop most of the frontend using the wireframes and architecture diagrams as input.
+
+Phillip would develop most of the backend using the wireframes and architecture diagrams as input. Phillip would update the Trello board and also update the README document in this respect.
+
+Genuel would work on the Chat/Messaging featue of this application, which is complex, time consuming and required extra research. He would develop the frontend and backend endpoint logic for this feature. He would also post regular standups in discord.
+
+Work would be carried out concurrently after establishing a clear seperation of concerns.
+
+Decided that collaboration would occur primarily through Discord and Trello.
+Martin and Phillip would have regular meetups at the Sydney Support Hub to ensure frontend and backend interface successfully. Genuel was involved in these mettups through our Discord group chat and conference calls.
+
+Discussed preliminary data requirements.
+
+Submitted T3A2-A
+Understanding how to allocate code as well as which portion of it to start- How to use upstream- Branches as a collaboration group
+Start frontend and setup backend. Set up git repos and learn how to do merges, branches, upstream- Workout what the routes are and requests / returns look like- Seeding script for database- Foundations from package.json to be pushed
+Git upstream and merging basics
+
+## Day 2 - 22/8/23
+
+**Front End:** Carried out the checklist in the frontend setup card. The following tasks were carried out:
+
+The project repository, project directory structure was established.
+
+A gitignore file was created to specify what project files to exclude from the repository.
+
+The Vite tooling, development environment and server was set up and configured.
+
+All project dependencies were installed and correctly configured.
+
+**Back End:** Carried out the checklist in the corresponding backend setup card. The following tasks were carried out:
+
+Genuel established and took ownership of the backend project repository.
+
+A corresponding .gitignore file was created to specify what project files to exclude from the repository.
+
+The backend directory structure was established in line with Express MVC standards.
+
+All important dependencies were installed like 'dotenv', 'mongoose', 'jest' and 'supertest'.
+
+Phillip created a general script to connect to and seed the mongo database. When run the script created collections for users, books, user_inventory and messages.
+
+Genuel spent time researching the socket.io package.
+
+Both cards were promptly moved to the Review column and then the Complete column.
+
+
+Done few routes backand and few entries on frontend
+All good at this stage
+Do more routes back and functionality in front-end
+Learned more about socket.io.
 
 ***<p align="left">Figure 7</p>***
 ![Trello-Board](docs/Day-2.png)
 ***<p align="center">Trello Board at the End of Day 2</p>***
+
+## Day 3 - 23/8/23
+
+Continued research and experimentation with chat functions and socket.io API.
+
+Time was spent working out how to integrate the socket.io package into the frontend and backend.
+
+Work commenced on login and registration both frontend and backend. Since this is a requirement for the chat feature priority was given to it by Phillip and Genuel. Extensive upfront development was carried out by both with Phillip creating an initial version and Genuel adding support for paswword encryption and web token generation.
+
+Martin commenced work on the navigation, hero and footer bars.
+
+Martin commenced work on the introductory home page, and the login and registration pages.
+
+
+Researched a lot about chat functions and socket.io. Worked on inventory. Worked on register, login & book search today.
+
+Figuring out how to integrate socket.io frontend and backend
+
+3.By tomorrow complete login/register to complete chat function asap
+
+Socket.io requries authed users. Folder structure needs to be less messy. Pull before pushing
+
+Extra Notes; Swapping around some responsibilites, Genuel carrying on from Philips login/register due to needing it for socket.io
+
+***<p align="left">Figure 8</p>***
+![Trello-Board](docs/Day-3.png)
+***<p align="center">Trello Board at the End of Day 3</p>***
+
+## Day 4 - 24/8/23
+
+Finished the UI for login.
+
+
+
+Gen Martin Philip
+Finished update book function and started working on search function in Mybooks. Finished UI for login, set up schemas for user, messages, chat
+Update took me longer than expected. folder structure but is fixed now
+Want to finish search functions and working on routes. want to finish user auth and move on to chatting function
+Learned more about props and state‌, learned about chakraui
+
+***<p align="left">Figure 8</p>***
+![Trello-Board](docs/Day-4.png)
+***<p align="center">Trello Board at the End of Day 3</p>***
+
+## Day 5 - 25/8/23
+
+Meeting / Day Notes
+
+Backend user auth, login/register
+‌
+Frontend signup and login functionality
+Location of middleware is very important as it broke everything.
+
+## Day 6 - Sat 26/8/23
+
+## Day 7 - Sun 27/8/23
+
+## Day 8 - 28/8/23
+
+Gen Martin Philip
+
+1 Complete frontend sign in/register MVP. Chaned searches due to different data structures, sign up button in home page links to register page.
+
+2 None right now
+
+3 Start/finish MVP for chat functionality. Change book update to fetch from backend and updates
+
+4 usehistory vs usenavigate. always check imports
+
+## Day 9 - 29/8/23
+
+Gen Martin Philip
+
+Frontend started for Chat, Made basic API for retrieving chat and making a chat. Drawing user from web token. Restricting all endpoints based on user id. Cut extra endpoints. Refining endpoints. Moving error handling  to middleware for those not already handled by it.
+None for now
+Finish Chat Page UI, Start Sending Messages API.
+Documentation is important especially in tutorials as you can see what has been updated/deprecated.
+
+## Day 10 - 30/8/23
+
+Genuel Martin Philip
+All backend exceptions now handled by middleware. Password no longer returned. Setup a base URL for rotuers. Set up user search ui for chat, set up basic chat page
+2.Merging conflicts. using regex in mongodb for than just the first string
+Unit testing of some of backend and possibly moving baseURL to env. Chat rendering and chat sending message API
+documentation essential
+
+## Day 11 - 31/8/23
+
+Gen Martin Philip
+
+Wrote some unit testing. Users, mybooks all functionalities connected to backend and works well. Error handling added. finished search and load user function
+Tests failing due to timeouts.
+Finish error handling and refactoring and move on to home or profile. complete the message ui and finish the messaging websocket api
+A lot of small part can cause bugs. lots of moving parts and moving back and forth between frontend and backend  cane be quite tiring
+
+## Day 12 - 1/9/23
+
+Fixed error with userController. - The pre save hook wasn’t running when updating users, so passwords were being saved as plaintext. This was fixed. Finished UI for messaging and also completed realtime messaging
+
+Burn out from the amount of work completed, unsure if can get all tests written out
+
+Test deploy and possibly do notifications for messaging
+
+Socket.io and also why this is called sprints cause you can’t do this indefinitely
+
+## Day 13 - 2/9/23
+
+## Day 14 - 3/9/23
+
