@@ -100,6 +100,6 @@ const handleRemove = async (entry) => {
       </div>
     </div>
   );
-  };
+};
   
-  export default UsersBooks;
+export default UsersBooks;
