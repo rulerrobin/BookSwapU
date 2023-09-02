@@ -39,7 +39,7 @@ const Login = () => {
          }
          // Send a registration request to the server
          const { data } = await axios.post(
-            'http://localhost:5000/users/login', 
+            '/users/login', 
             { email, password },
             config
          )
