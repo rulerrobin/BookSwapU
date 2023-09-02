@@ -52,7 +52,7 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
          setLoading(true)
 
          const { data } = await axios.get(
-            `http://localhost:5000/api/message/${selectedChat._id}`,
+            `https://aquamarine-kataifi-2f652b.netlify.app/api/message/${selectedChat._id}`,
             config
          ) 
 
@@ -105,7 +105,7 @@ const SingleChat = ({fetchAgain, setfetchAgain}) => {
                }
             }
             setNewMessage("")
-            const { data } = await axios.post(`http://localhost:5000/api/message/`, 
+            const { data } = await axios.post(`https://aquamarine-kataifi-2f652b.netlify.app/api/message/`, 
             {
                content: newMessage,
                chatId: selectedChat._id,
