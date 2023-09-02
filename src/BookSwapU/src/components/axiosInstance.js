@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // Create a new axios instance with a predefined baseURL
 const instance = axios.create({
-  baseURL: 'https://aquamarine-kataifi-2f652b.netlify.app/' 
+  baseURL: 'https://bookswapu-api.onrender.com' 
 })
 
 // Add a request interceptor to the axios instance
