@@ -39,7 +39,7 @@ const Login = () => {
          }
          // Send a registration request to the server
          const { data } = await axios.post(
-            '/users/login', 
+            'https://bookswapu-api.onrender.com/users/login', 
             { email, password },
             config
          )
