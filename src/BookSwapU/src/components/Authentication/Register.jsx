@@ -107,7 +107,7 @@ const Register = () => {
                }
             }
             // Send a registration request to the server
-            const { data } = await axios.post('https://bookswapu-api.onrender.com/user/register', 
+            const { data } = await axios.post('https://bookswapu-api.onrender.com/users/register', 
             { username, email, password },
             config
             )
