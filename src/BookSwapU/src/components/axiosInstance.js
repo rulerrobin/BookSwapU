@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // Create a new axios instance with a predefined baseURL
 const instance = axios.create({
-  baseURL: 'http://localhost:3000' 
+  baseURL: 'http://localhost:5000' 
 })
 
 // Add a request interceptor to the axios instance

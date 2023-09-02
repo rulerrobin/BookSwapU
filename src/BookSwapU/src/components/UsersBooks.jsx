@@ -60,58 +60,46 @@ const handleRemove = async (entry) => {
 }
   // Render component.
   return (
-    <>
+    <div className="container mt-5">
       <h2>My Books</h2>
       <SearchBar onSearch={handleSearch} />
-      <div className="d-grid gap-2">
-        <Link to="/newentry" className="btn btn-primary btn-lg" type="button">
-          Add New Book
-        </Link>
+      
+      <div className="d-grid gap-2 mt-3">
+        <Link to="/newentry" className="btn btn-primary btn-lg">Add New Book</Link>
       </div>
-      <ul>
+      
+      <div className="row mt-4">
         {filteredEntries.map((entry) => (
-          <li key={entry._id}>
-            <div>
-              <p>
-                <strong>Title:</strong> {entry ? entry.title : "N/A"}
-              </p>
-              <p>
-                <strong>Author:</strong>{" "}
-                {entry ? entry.author : "N/A"}
-              </p>
-              <p>
-                <strong>Condition:</strong>{" "}
-                {entry ? entry.condition : "N/A"}
-              </p>
-              <p>
-                <strong>Status:</strong>{" "}
-                {entry ? entry.status : "N/A"}
-              </p>
-              <p>
-                <strong>Edition:</strong>{" "}
-                {entry ? entry.edition : "N/A"}
-              </p>
-              <p>
-                <strong>Year:</strong> {entry ? entry.year : "N/A"}
-              </p>
-              <button
-                className="btn btn-primary mt-3"
-                onClick={() => handleRemove(entry)}
-              >
-                Remove
-              </button>
-              <button
-                className="btn btn-primary mt-3"
-                onClick={() => navigate(`/updateentry/${entry._id}`)}
-              >
-                Update
-              </button>
+          <div key={entry._id} className="col-md-4 mb-4">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">{entry.title || "N/A"}</h5>
+                <p className="card-text">
+                  <strong>Author:</strong> {entry.author || "N/A"}<br />
+                  <strong>Condition:</strong> {entry.condition || "N/A"}<br />
+                  <strong>Status:</strong> {entry.status || "N/A"}<br />
+                  <strong>Edition:</strong> {entry.edition || "N/A"}<br />
+                  <strong>Year:</strong> {entry.year || "N/A"}
+                </p>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleRemove(entry)}
+                >
+                  Remove
+                </button>
+                <button
+                  className="btn btn-secondary ms-2"
+                  onClick={() => navigate(`/updateentry/${entry._id}`)}
+                >
+                  Update
+                </button>
+              </div>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
-    </>
+      </div>
+    </div>
   );
 };
-
-export default UsersBooks
+  
+export default UsersBooks;

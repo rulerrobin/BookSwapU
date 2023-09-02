@@ -36,19 +36,25 @@ const SearchAllBooks = () => {
     <div>
       <h2>Search Books</h2>
       <SearchBar onSearch={handleSearch} showAllButton={false} />
-      <ul>
-        {searchResults.map((result) => (
-          <li key={result._id}>
-            <h3>{result.book.title}</h3>
-            <p>Author: {result.book.author}</p>
-            <p>Condition: {result.book.condition}</p>
-            <p>User: {result.user.username}</p>
-            <p>Status: {result.book.status}</p>
-            <p>Edition: {result.book.edition}</p>
-            <p>Year: {result.year}</p>
-          </li>
-        ))}
-      </ul>
+      <div className="row mt-4">
+    {searchResults.map((result) => (
+      <div key={result._id} className="col-md-4 mb-4">
+        <div className="card">
+          <div className="card-body">
+            <h5 className="card-title">{result.book.title}</h5>
+            <p className="card-text">
+              <strong>Author:</strong> {result.book.author}<br />
+              <strong>Condition:</strong> {result.book.condition}<br />
+              <strong>User:</strong> {result.user.username}<br />
+              <strong>Status:</strong> {result.book.status}<br />
+              <strong>Edition:</strong> {result.book.edition}<br />
+              <strong>Year:</strong> {result.book.year}
+            </p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
     </div>
   )
 }
