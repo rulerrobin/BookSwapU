@@ -546,6 +546,8 @@ For User Acceptance Testing we used a test case template for manual tests. The f
 ![Trello-Board](docs/UserSearchBarEmptyTestCase.png)
 ***<p align="center">User Search Bar Empty Test Case</p>***
 
+\* Please note that a copy of the manual testing spreadsheet (BookSwapU_Fontend_Testing.pdf) can be found in the /docs directory.
+
 ### Note About Using the Chat Feature
 
 If a single user wants to test the chat feature (Messages on the Navbar), they must log in in separate windows with 2 different users credentials. This way they can answer their own posts and view the results in 2 windows simultaneously.
