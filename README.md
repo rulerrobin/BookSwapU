@@ -511,3 +511,50 @@ At the end of Day 14 Task 22 was under review and was marked as complete just pr
 ***<p align="left">Figure 18</p>***
 ![Trello-Board](docs/Day-14.png)
 ***<p align="center">Trello Board at the End of Day 13</p>***
+
+# Testing
+
+## Frontend Functional and Usability Testing
+
+For User Acceptance Testing we used a test case template for manual tests. The following test cases were carried out. The outcomes of each test case are documented below.
+
+***<p align="left">Figure 19</p>***
+![Trello-Board](docs/RegisterTestCase.png)
+***<p align="center">Register Test Case </p>***
+
+***<p align="left">Figure 20</p>***
+![Trello-Board](docs/LoginTestCase.png)
+***<p align="center">Login Test Case</p>***
+
+***<p align="left">Figure 21</p>***
+![Trello-Board](docs/LogoutTestCase.png)
+***<p align="center">Logout Test Case</p>***
+
+***<p align="left">Figure 22</p>***
+![Trello-Board](docs/NoUserAccessTestCase.png)
+***<p align="center">No User Access Test Case</p>***
+
+***<p align="left">Figure 23</p>***
+![Trello-Board](docs/MessageSentAndReceivedTestCase.png)
+***<p align="center">Message Sent And Received Test Case</p>***
+
+***<p align="left">Figure 24</p>***
+![Trello-Board](docs/ClosingChatWindowTestCase.png)
+***<p align="center">Closing Chat Window Test Case</p>***
+
+***<p align="left">Figure 25</p>***
+![Trello-Board](docs/UserSearchBarEmptyTestCase.png)
+***<p align="center">User Search Bar Empty Test Case</p>***
+
+### Note About Using the Chat Feature
+
+If a single user wants to test the chat feature (Messages on the Navbar), they must log in in separate windows with 2 different users credentials. This way they can answer their own posts and view the results in 2 windows simultaneously.
+
+## Backend Unit Testing
+
+Backend unit testing is an automated process that is carried out by moving to the same directory as the package.json file and  executing the following command:
+
+    npm test
+
+This runs the test scripts in the /src/tests directory of our Express project structure. These scripts are used to test the API endpoints of our application. They cover general usage as well as exception handling (error messages) and missing web tokens.
+
